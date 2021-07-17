@@ -25,6 +25,7 @@
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -36,36 +37,38 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label prefHeight="23.0" prefWidth="175.0" text="Title" />
-                  <TextField fx:id="addressTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField fx:id="postalCodeTextField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField fx:id="phoneNumberTextField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <TextField fx:id="nameTextField" GridPane.columnIndex="1" />
-                  <Label prefHeight="23.0" prefWidth="175.0" text="Description" GridPane.rowIndex="1" />
-                  <Label prefHeight="23.0" prefWidth="175.0" text="Location" GridPane.rowIndex="2" />
-                  <Label prefHeight="23.0" prefWidth="175.0" text="Contact" GridPane.rowIndex="3" />
-                  <Label prefHeight="23.0" prefWidth="175.0" text="End Date and Time" GridPane.rowIndex="6" />
-                  <Label prefHeight="23.0" prefWidth="175.0" text="Start Date and Time" GridPane.rowIndex="5" />
-                  <Label prefHeight="23.0" prefWidth="175.0" text="Type" GridPane.rowIndex="4" />
-                  <Label prefHeight="23.0" prefWidth="175.0" text="User" GridPane.rowIndex="8" />
-                  <Label prefHeight="23.0" prefWidth="175.0" text="Customer" GridPane.rowIndex="7" />
-                  <ComboBox fx:id="countryComboBox1" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                  <ComboBox fx:id="countryComboBox2" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                  <ComboBox fx:id="firstLevelDivisionComboBox1" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
-                     <children>
-                        <DatePicker prefHeight="26.0" prefWidth="150.0" />
-                        <ComboBox prefWidth="120.0" />
-                        <ComboBox prefWidth="120.0" />
-                        <ChoiceBox prefWidth="120.0" />
-                     </children>
-                  </HBox>
+                  <Label prefHeight="23.0" prefWidth="175.0" text="Title" GridPane.rowIndex="1" />
+                  <TextField fx:id="descriptionTextField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="postalCodeTextField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="typeTextField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <TextField fx:id="titleTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label prefHeight="23.0" prefWidth="175.0" text="Description" GridPane.rowIndex="2" />
+                  <Label prefHeight="23.0" prefWidth="175.0" text="Location" GridPane.rowIndex="3" />
+                  <Label prefHeight="23.0" prefWidth="175.0" text="Contact" GridPane.rowIndex="4" />
+                  <Label prefHeight="23.0" prefWidth="175.0" text="End Date and Time" GridPane.rowIndex="7" />
+                  <Label prefHeight="23.0" prefWidth="175.0" text="Start Date and Time" GridPane.rowIndex="6" />
+                  <Label prefHeight="23.0" prefWidth="175.0" text="Type" GridPane.rowIndex="5" />
+                  <Label prefHeight="23.0" prefWidth="175.0" text="User" GridPane.rowIndex="9" />
+                  <Label prefHeight="23.0" prefWidth="175.0" text="Customer" GridPane.rowIndex="8" />
+                  <ComboBox fx:id="userComboBox" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                  <ComboBox fx:id="customerComboBox" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                  <ComboBox fx:id="contactComboBox1" prefWidth="250.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                      <children>
-                        <DatePicker prefHeight="26.0" prefWidth="150.0" />
-                        <ComboBox prefWidth="120.0" />
-                        <ComboBox prefWidth="120.0" />
-                        <ChoiceBox prefWidth="120.0" />
+                        <DatePicker fx:id="startDatePicker" prefHeight="26.0" prefWidth="150.0" />
+                        <ComboBox fx:id="startTimeHourComboBox" prefWidth="120.0" />
+                        <ComboBox fx:id="startTimeMinuteComboBox" prefWidth="120.0" />
+                        <ChoiceBox fx:id="startTimeAmPmChoiceBox" prefWidth="120.0" />
+                     </children>
+                  </HBox>
+                  <Label prefHeight="23.0" prefWidth="175.0" text="Appointment ID" />
+                  <TextField fx:id="appointmentIdTextField" GridPane.columnIndex="1" />
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                     <children>
+                        <DatePicker fx:id="endDatePicker" prefHeight="26.0" prefWidth="150.0" />
+                        <ComboBox fx:id="endTimeHourComboBox" prefWidth="120.0" />
+                        <ComboBox fx:id="endTimeMinuteComboBox" prefWidth="120.0" />
+                        <ChoiceBox fx:id="endTimeAmPmChoiceBox" prefWidth="120.0" />
                      </children>
                   </HBox>
                </children>
@@ -75,9 +78,9 @@
             </GridPane>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                <children>
-                  <Button alignment="CENTER" defaultButton="true" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Update Appointment" textAlignment="CENTER" />
-                  <Button alignment="CENTER" layoutX="129.0" layoutY="10.0" mnemonicParsing="false" text="Clear" textAlignment="CENTER" />
-                  <Button alignment="CENTER" cancelButton="true" mnemonicParsing="false" text="Go Back" textAlignment="CENTER" />
+                  <Button fx:id="updateAppointmentButton" alignment="CENTER" defaultButton="true" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Update Appointment" textAlignment="CENTER" />
+                  <Button fx:id="clearButton" alignment="CENTER" layoutX="129.0" layoutY="10.0" mnemonicParsing="false" text="Clear" textAlignment="CENTER" />
+                  <Button fx:id="goBackButton" alignment="CENTER" cancelButton="true" mnemonicParsing="false" text="Go Back" textAlignment="CENTER" />
                </children>
             </HBox>
          </children>

@@ -1,8 +1,7 @@
 package Controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 
 public class updateAppointmentScreen {
@@ -11,20 +10,56 @@ public class updateAppointmentScreen {
     private AnchorPane anchorPane;
 
     @FXML
-    private TextField addressTextField;
+    private TextField descriptionTextField;
 
     @FXML
     private TextField postalCodeTextField;
 
     @FXML
-    private TextField phoneNumberTextField;
+    private TextField typeTextField;
 
     @FXML
-    private TextField nameTextField;
+    private TextField titleTextField;
 
     @FXML
-    private ComboBox<?> countryComboBox;
+    private ComboBox<?> userComboBox;
 
     @FXML
-    private ComboBox<?> firstLevelDivisionComboBox;
+    private ComboBox<?> customerComboBox;
+
+    @FXML
+    private ComboBox<?> contactComboBox1;
+
+    @FXML
+    private DatePicker startDatePicker;
+
+    @FXML
+    private ComboBox<?> startTimeHourComboBox;
+
+    @FXML
+    private ComboBox<?> startTimeMinuteComboBox;
+
+    @FXML
+    private ChoiceBox<?> endTimeAmPmChoiceBox;
+
+    @FXML
+    private TextField appointmentIdTextField;
+
+    @FXML
+    private DatePicker endDatePicker;
+
+    @FXML
+    private ComboBox<?> endTimeHourComboBox;
+
+    @FXML
+    private ComboBox<?> endTimeMinuteComboBox;
+
+    @FXML
+    private Button updateAppointmentButton;
+
+    @FXML
+    private Button clearButton;
+
+    @FXML
+    private Button goBackButton;
 }
