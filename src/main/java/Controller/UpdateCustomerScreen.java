@@ -5,7 +5,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
-public class addCustomerScreen {
+public class UpdateCustomerScreen {
 
     @FXML
     private AnchorPane anchorPane;
@@ -21,6 +21,9 @@ public class addCustomerScreen {
 
     @FXML
     private TextField nameTextField;
+
+    @FXML
+    private TextField idTextField;
 
     @FXML
     private ComboBox<?> countryComboBox;

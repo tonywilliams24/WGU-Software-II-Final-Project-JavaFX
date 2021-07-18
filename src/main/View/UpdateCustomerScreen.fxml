@@ -12,17 +12,18 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.addCustomerScreen">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.UpdateCustomerScreen">
    <children>
       <VBox alignment="CENTER" prefHeight="750.0" prefWidth="1000.0" spacing="20.0">
          <children>
-            <Label alignment="TOP_CENTER" prefHeight="20.0" prefWidth="177.0" text="Add Customer Screen" />
+            <Label alignment="TOP_CENTER" prefHeight="20.0" prefWidth="177.0" text="Update Customer Screen" />
             <GridPane prefHeight="375.0" prefWidth="500.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -31,18 +32,20 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label prefHeight="23.0" prefWidth="175.0" text="Name" />
-                  <TextField fx:id="addressTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField fx:id="postalCodeTextField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField fx:id="phoneNumberTextField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <TextField fx:id="nameTextField" GridPane.columnIndex="1" />
-                  <Label prefHeight="23.0" prefWidth="175.0" text="Address" GridPane.rowIndex="1" />
-                  <Label prefHeight="23.0" prefWidth="175.0" text="Postal Code" GridPane.rowIndex="2" />
-                  <Label prefHeight="23.0" prefWidth="175.0" text="Phone Number" GridPane.rowIndex="3" />
-                  <ComboBox fx:id="countryComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <ComboBox fx:id="firstLevelDivisionComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <Label prefHeight="23.0" prefWidth="175.0" text="Country" GridPane.rowIndex="4" />
-                  <Label prefHeight="23.0" prefWidth="175.0" text="First Level Division" GridPane.rowIndex="5" />
+                  <Label prefHeight="23.0" prefWidth="175.0" text="Name" GridPane.rowIndex="1" />
+                  <TextField fx:id="addressTextField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="postalCodeTextField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="phoneNumberTextField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextField fx:id="nameTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label prefHeight="23.0" prefWidth="175.0" text="Address" GridPane.rowIndex="2" />
+                  <Label prefHeight="23.0" prefWidth="175.0" text="Postal Code" GridPane.rowIndex="3" />
+                  <Label prefHeight="23.0" prefWidth="175.0" text="Phone Number" GridPane.rowIndex="4" />
+                  <ComboBox fx:id="countryComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <ComboBox fx:id="firstLevelDivisionComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <Label prefHeight="23.0" prefWidth="175.0" text="Country" GridPane.rowIndex="5" />
+                  <Label prefHeight="23.0" prefWidth="175.0" text="First Level Division" GridPane.rowIndex="6" />
+                  <Label prefHeight="23.0" prefWidth="175.0" text="ID" />
+                  <TextField fx:id="idTextField" GridPane.columnIndex="1" />
                </children>
                <padding>
                   <Insets right="500.0" />
@@ -50,7 +53,7 @@
             </GridPane>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                <children>
-                  <Button alignment="CENTER" defaultButton="true" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Add Customer" textAlignment="CENTER" />
+                  <Button alignment="CENTER" defaultButton="true" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Update Customer" textAlignment="CENTER" />
                   <Button alignment="CENTER" layoutX="129.0" layoutY="10.0" mnemonicParsing="false" text="Clear" textAlignment="CENTER" />
                   <Button alignment="CENTER" cancelButton="true" mnemonicParsing="false" text="Go Back" textAlignment="CENTER" />
                </children>

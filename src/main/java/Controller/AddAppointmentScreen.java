@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 
-public class updateAppointmentScreen {
+public class AddAppointmentScreen {
 
     @FXML
     private AnchorPane anchorPane;
@@ -41,9 +41,6 @@ public class updateAppointmentScreen {
 
     @FXML
     private ChoiceBox<?> endTimeAmPmChoiceBox;
-
-    @FXML
-    private TextField appointmentIdTextField;
 
     @FXML
     private DatePicker endDatePicker;

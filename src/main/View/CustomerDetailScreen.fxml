@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CustomerDetailScreen">
+   <children>
+      <VBox alignment="CENTER" prefHeight="750.0" prefWidth="1000.0" spacing="20.0">
+         <children>
+            <Label alignment="TOP_CENTER" prefHeight="20.0" prefWidth="156.0" text="Customer Detail Screen" />
+            <Label text="Customers" />
+            <TableView fx:id="customersTable" prefHeight="252.0" prefWidth="1000.0">
+               <columns>
+                  <TableColumn prefWidth="82.0" text="Customer ID" />
+                  <TableColumn prefWidth="198.0" text="Name" />
+                  <TableColumn prefWidth="239.0" text="Address" />
+                  <TableColumn prefWidth="101.0" text="Postal Code" />
+                  <TableColumn prefWidth="123.0" text="Phone Number" />
+                  <TableColumn prefWidth="141.0" text="First Level Division" />
+                  <TableColumn prefWidth="190.0" text="Country" />
+               </columns>
+            </TableView>
+            <HBox alignment="CENTER" prefHeight="71.0" prefWidth="1000.0" spacing="40.0">
+               <children>
+                  <Button fx:id="addCustomerButton" alignment="CENTER" mnemonicParsing="false" text="Add Customer" textAlignment="CENTER" />
+                  <Button fx:id="updateCustomerButton" alignment="CENTER" defaultButton="true" mnemonicParsing="false" text="Update Customer" textAlignment="CENTER" />
+                  <Button fx:id="deleteCustomerButton" alignment="CENTER" defaultButton="true" mnemonicParsing="false" text="Delete Customer" textAlignment="CENTER" />
+                  <Button fx:id="clearCustomerSelectionButton" alignment="CENTER" defaultButton="true" mnemonicParsing="false" text="Clear Selection" textAlignment="CENTER" />
+               </children>
+            </HBox>
+            <Label text="Appointments" />
+            <HBox alignment="CENTER" prefHeight="34.0" prefWidth="1000.0" spacing="20.0">
+               <children>
+                  <RadioButton mnemonicParsing="false" text="Customer">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="appointmentType" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton mnemonicParsing="false" selected="true" text="User" toggleGroup="$appointmentType" />
+               </children>
+            </HBox>
+            <TableView fx:id="appointmentsTable" prefHeight="200.0" prefWidth="200.0">
+               <columns>
+                  <TableColumn prefWidth="181.0" text="Title" />
+                  <TableColumn prefWidth="309.0" text="Description" />
+                  <TableColumn minWidth="0.0" prefWidth="135.0" text="Location" />
+                  <TableColumn prefWidth="101.0" text="Type" />
+                  <TableColumn prefWidth="137.0" text="Start Date / Time" />
+                  <TableColumn prefWidth="136.0" text="End Date / Time" />
+               </columns>
+            </TableView>
+            <HBox alignment="CENTER" prefHeight="74.0" prefWidth="1000.0" spacing="40.0">
+               <children>
+                  <Button fx:id="addAppointmentButton" alignment="CENTER" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Add Appointment" textAlignment="CENTER" />
+                  <Button fx:id="updateAppointmentButton" alignment="CENTER" defaultButton="true" layoutX="129.0" layoutY="10.0" mnemonicParsing="false" text="Update Appointment" textAlignment="CENTER" />
+                  <Button fx:id="deleteAppointmentButton" alignment="CENTER" defaultButton="true" mnemonicParsing="false" text="Delete Appointment" textAlignment="CENTER" />
+                  <Button fx:id="clearAppointmentSelectionBUtton" alignment="CENTER" defaultButton="true" mnemonicParsing="false" text="Clear Selection" textAlignment="CENTER" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="74.0" prefWidth="1000.0" spacing="40.0">
+               <children>
+                  <Button fx:id="goBackButton" alignment="CENTER" defaultButton="true" mnemonicParsing="false" text="Go Back" textAlignment="CENTER" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
