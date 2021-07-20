@@ -25,7 +25,12 @@
                   <PasswordField fx:id="passwordPasswordField" />
                </children>
             </HBox>
-            <Button alignment="CENTER" defaultButton="true" mnemonicParsing="false" text="Login" textAlignment="CENTER" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
+               <children>
+                  <Button fx:id="loginButton" alignment="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#submitHandler" text="Login" textAlignment="CENTER" />
+                  <Button fx:id="clearButton" alignment="CENTER" cancelButton="true" mnemonicParsing="false" text="Clear" textAlignment="CENTER" />
+               </children>
+            </HBox>
          </children>
       </VBox>
    </children>

@@ -45,8 +45,8 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="400.0">
                <children>
-                  <Button fx:id="customerDetailsButton" alignment="CENTER" mnemonicParsing="false" text="Customer Details" textAlignment="CENTER" />
-                  <Button fx:id="appointmentDetailsButton" alignment="CENTER" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Appointment Details" textAlignment="CENTER" />
+                  <Button fx:id="customerDetailsButton" alignment="CENTER" mnemonicParsing="false" onAction="#customerDetailsButtonHandler" text="Customer Details" textAlignment="CENTER" />
+                  <Button fx:id="appointmentDetailsButton" alignment="CENTER" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#appointmentDetailsButtonHandler" text="Appointment Details" textAlignment="CENTER" />
                </children>
             </HBox>
          </children>
