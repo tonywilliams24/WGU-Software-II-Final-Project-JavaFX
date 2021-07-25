@@ -18,13 +18,13 @@
             <Label text="Customers" />
             <TableView fx:id="customersTable" prefHeight="252.0" prefWidth="1000.0">
                <columns>
-                  <TableColumn prefWidth="82.0" text="Customer ID" />
-                  <TableColumn prefWidth="198.0" text="Name" />
-                  <TableColumn prefWidth="239.0" text="Address" />
-                  <TableColumn prefWidth="101.0" text="Postal Code" />
-                  <TableColumn prefWidth="123.0" text="Phone Number" />
-                  <TableColumn prefWidth="141.0" text="First Level Division" />
-                  <TableColumn prefWidth="190.0" text="Country" />
+                  <TableColumn fx:id="customerIdColumn" prefWidth="82.0" text="Customer ID" />
+                  <TableColumn fx:id="nameColumn" prefWidth="198.0" text="Name" />
+                  <TableColumn fx:id="addressColumn" prefWidth="239.0" text="Address" />
+                  <TableColumn fx:id="postalCodeColumn" prefWidth="101.0" text="Postal Code" />
+                  <TableColumn fx:id="phoneNumberColumn" prefWidth="123.0" text="Phone Number" />
+                  <TableColumn fx:id="firstLevelDivisionColumn" prefWidth="141.0" text="First Level Division" />
+                  <TableColumn fx:id="countryColumn" prefWidth="190.0" text="Country" />
                </columns>
             </TableView>
             <HBox alignment="CENTER" prefHeight="71.0" prefWidth="1000.0" spacing="40.0">
@@ -48,12 +48,12 @@
             </HBox>
             <TableView fx:id="appointmentsTable" prefHeight="200.0" prefWidth="200.0">
                <columns>
-                  <TableColumn prefWidth="181.0" text="Title" />
-                  <TableColumn prefWidth="309.0" text="Description" />
-                  <TableColumn minWidth="0.0" prefWidth="135.0" text="Location" />
-                  <TableColumn prefWidth="101.0" text="Type" />
-                  <TableColumn prefWidth="137.0" text="Start Date / Time" />
-                  <TableColumn prefWidth="136.0" text="End Date / Time" />
+                  <TableColumn fx:id="titleColumn" prefWidth="181.0" text="Title" />
+                  <TableColumn fx:id="descriptionColumn" prefWidth="309.0" text="Description" />
+                  <TableColumn fx:id="locationColumn" minWidth="0.0" prefWidth="135.0" text="Location" />
+                  <TableColumn fx:id="typeColumn" prefWidth="101.0" text="Type" />
+                  <TableColumn fx:id="startDateTimeColumn" prefWidth="137.0" text="Start Date / Time" />
+                  <TableColumn fx:id="endDateTimeColumn" prefWidth="136.0" text="End Date / Time" />
                </columns>
             </TableView>
             <HBox alignment="CENTER" prefHeight="74.0" prefWidth="1000.0" spacing="40.0">

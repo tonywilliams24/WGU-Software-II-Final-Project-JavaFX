@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
@@ -20,6 +21,27 @@ public class CustomerDetailScreen {
 
     @FXML
     private TableView<?> customersTable;
+
+    @FXML
+    private TableColumn<Customer, String> customerIdColumn;
+
+    @FXML
+    private TableColumn<Customer, String> nameColumn;
+
+    @FXML
+    private TableColumn<Customer, String> addressColumn;
+
+    @FXML
+    private TableColumn<Customer, String> postalCodeColumn;
+
+    @FXML
+    private TableColumn<Customer, String> phoneNumberColumn;
+
+    @FXML
+    private TableColumn<Customer, String> firstLevelDivisionColumn;
+
+    @FXML
+    private TableColumn<Customer, String> countryColumn;
 
     @FXML
     private Button addCustomerButton;
@@ -38,6 +60,24 @@ public class CustomerDetailScreen {
 
     @FXML
     private TableView<?> appointmentsTable;
+
+    @FXML
+    private TableColumn<Appointment, String> titleColumn;
+
+    @FXML
+    private TableColumn<Appointment, String> descriptionColumn;
+
+    @FXML
+    private TableColumn<Appointment, String> locationColumn;
+
+    @FXML
+    private TableColumn<Appointment, String> typeColumn;
+
+    @FXML
+    private TableColumn<Appointment, String> startDateTimeColumn;
+
+    @FXML
+    private TableColumn<Appointment, String> endDateTimeColumn;
 
     @FXML
     private Button addAppointmentScreenButton;
