@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.UserHomeScreen">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UserHomeScreen">
    <children>
       <VBox alignment="CENTER" prefHeight="750.0" prefWidth="1000.0" spacing="20.0">
          <children>
@@ -43,10 +43,15 @@
                   </TableView>
                </children>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="400.0">
+            <HBox alignment="CENTER" prefHeight="47.0" prefWidth="960.0" spacing="400.0">
                <children>
-                  <Button fx:id="customerDetailsButton" alignment="CENTER" mnemonicParsing="false" onAction="#customerDetailsButtonHandler" text="Customer Details" textAlignment="CENTER" />
-                  <Button fx:id="appointmentDetailsButton" alignment="CENTER" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#appointmentDetailsButtonHandler" text="Appointment Details" textAlignment="CENTER" />
+                  <Button fx:id="customerDetailScreenButton" alignment="CENTER" mnemonicParsing="false" onAction="#customerDetailScreenButtonHandler" text="Customer Details" textAlignment="CENTER" />
+                  <Button fx:id="appointmentDetailScreenButton" alignment="CENTER" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#appointmentDetailScreenButtonHandler" text="Appointment Details" textAlignment="CENTER" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="41.0" prefWidth="960.0" spacing="400.0">
+               <children>
+                  <Button fx:id="logOutButton" alignment="CENTER" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#logOutButtonSelectedHandler" text="Log Out" textAlignment="CENTER" />
                </children>
             </HBox>
          </children>

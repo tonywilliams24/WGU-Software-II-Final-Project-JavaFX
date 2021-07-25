@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CustomerDetailScreen">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CustomerDetailScreen">
    <children>
       <VBox alignment="CENTER" prefHeight="750.0" prefWidth="1000.0" spacing="20.0">
          <children>
@@ -29,10 +29,10 @@
             </TableView>
             <HBox alignment="CENTER" prefHeight="71.0" prefWidth="1000.0" spacing="40.0">
                <children>
-                  <Button fx:id="addCustomerButton" alignment="CENTER" mnemonicParsing="false" text="Add Customer" textAlignment="CENTER" />
-                  <Button fx:id="updateCustomerButton" alignment="CENTER" defaultButton="true" mnemonicParsing="false" text="Update Customer" textAlignment="CENTER" />
-                  <Button fx:id="deleteCustomerButton" alignment="CENTER" defaultButton="true" mnemonicParsing="false" text="Delete Customer" textAlignment="CENTER" />
-                  <Button fx:id="clearCustomerSelectionButton" alignment="CENTER" defaultButton="true" mnemonicParsing="false" text="Clear Selection" textAlignment="CENTER" />
+                  <Button fx:id="addCustomerButton" alignment="CENTER" mnemonicParsing="false" onAction="#addCustomerButtonSelectedHandler" text="Add Customer" textAlignment="CENTER" />
+                  <Button fx:id="updateCustomerButton" alignment="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#updateCustomerButtonSelectedHandler" text="Update Customer" textAlignment="CENTER" />
+                  <Button fx:id="deleteCustomerButton" alignment="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#deleteCustomerButtonSelectedHandler" text="Delete Customer" textAlignment="CENTER" />
+                  <Button fx:id="clearCustomerButton" alignment="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#clearCustomerButtonSelectedHandler" text="Clear" textAlignment="CENTER" />
                </children>
             </HBox>
             <Label text="Appointments" />
@@ -58,15 +58,15 @@
             </TableView>
             <HBox alignment="CENTER" prefHeight="74.0" prefWidth="1000.0" spacing="40.0">
                <children>
-                  <Button fx:id="addAppointmentButton" alignment="CENTER" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Add Appointment" textAlignment="CENTER" />
-                  <Button fx:id="updateAppointmentButton" alignment="CENTER" defaultButton="true" layoutX="129.0" layoutY="10.0" mnemonicParsing="false" text="Update Appointment" textAlignment="CENTER" />
-                  <Button fx:id="deleteAppointmentButton" alignment="CENTER" defaultButton="true" mnemonicParsing="false" text="Delete Appointment" textAlignment="CENTER" />
-                  <Button fx:id="clearAppointmentSelectionBUtton" alignment="CENTER" defaultButton="true" mnemonicParsing="false" text="Clear Selection" textAlignment="CENTER" />
+                  <Button fx:id="addAppointmentScreenButton" alignment="CENTER" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#addAppointmentScreenButtonSelectedHandler" text="Add Appointment" textAlignment="CENTER" />
+                  <Button fx:id="updateAppointmentScreenButton" alignment="CENTER" defaultButton="true" layoutX="129.0" layoutY="10.0" mnemonicParsing="false" onAction="#updateAppointmentScreenButtonSelectedHandler" text="Update Appointment" textAlignment="CENTER" />
+                  <Button fx:id="deleteAppointmentButton" alignment="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#deleteAppointmentButtonSelectedHandler" text="Delete Appointment" textAlignment="CENTER" />
+                  <Button fx:id="clearAppointmentButton" alignment="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#clearAppointmentButtonSelectedHandler" text="Clear" textAlignment="CENTER" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="74.0" prefWidth="1000.0" spacing="40.0">
                <children>
-                  <Button fx:id="goBackButton" alignment="CENTER" defaultButton="true" mnemonicParsing="false" text="Go Back" textAlignment="CENTER" />
+                  <Button fx:id="homeScreenButton" alignment="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#homeScreenButtonSelectedHandler" text="Home Screen" textAlignment="CENTER" />
                </children>
             </HBox>
          </children>

@@ -1,3 +1,10 @@
 .root {
     -fx-font-family: 'Helvetica Neue', 'Arial';
 }
+
+.deleteButton {
+}
+
+.deleteButton:hover {
+    -fx-border-color: red;
+}

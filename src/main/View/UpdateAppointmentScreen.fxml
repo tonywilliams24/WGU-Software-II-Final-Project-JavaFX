@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.UpdateAppointmentScreen">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UpdateAppointmentScreen">
    <children>
       <VBox alignment="CENTER" prefHeight="750.0" prefWidth="1000.0" spacing="20.0">
          <children>
@@ -76,11 +76,16 @@
                   <Insets right="200.0" />
                </padding>
             </GridPane>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+            <HBox alignment="CENTER" prefHeight="47.0" prefWidth="960.0" spacing="20.0">
                <children>
-                  <Button fx:id="updateAppointmentButton" alignment="CENTER" defaultButton="true" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Update Appointment" textAlignment="CENTER" />
-                  <Button fx:id="clearButton" alignment="CENTER" layoutX="129.0" layoutY="10.0" mnemonicParsing="false" text="Clear" textAlignment="CENTER" />
-                  <Button fx:id="goBackButton" alignment="CENTER" cancelButton="true" mnemonicParsing="false" text="Go Back" textAlignment="CENTER" />
+                  <Button fx:id="updateAppointmentButton" alignment="CENTER" defaultButton="true" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#updateAppointmentButtonHandler" text="Update Appointment" textAlignment="CENTER" />
+                  <Button fx:id="clearButton" alignment="CENTER" layoutX="129.0" layoutY="10.0" mnemonicParsing="false" onAction="#clearButtonHandler" text="Clear" textAlignment="CENTER" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="40.0" prefWidth="960.0" spacing="20.0">
+               <children>
+                  <Button fx:id="customerDetailScreenButton" alignment="CENTER" cancelButton="true" mnemonicParsing="false" onAction="#customerDetailScreenButtonHandler" text="Customer Detail Screen" textAlignment="CENTER" />
+                  <Button fx:id="appointmentDetailScreenButton" alignment="CENTER" layoutX="129.0" layoutY="10.0" mnemonicParsing="false" onAction="#appointmentDetailScreenButtonHandler" text="Appointment Detail Screen" textAlignment="CENTER" />
                </children>
             </HBox>
          </children>

@@ -1,4 +1,4 @@
-package Controller;
+package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -32,16 +32,7 @@ public class LoginScreen {
 
     @FXML
     void submitHandler(ActionEvent loginSelected) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/UserHomeScreen.fxml"));
-        loader.load();
-     /* UserHomeScreen userHomeScreenController = loader.getController(); To implement if I need to send any information from login screen to home screen
-        userHomeScreenController.sendSomething();  */
-        Stage stage = (Stage) ((Button) loginSelected.getSource()).getScene().getWindow();
-        Parent parentScene = loader.getRoot();
-        parentScene.getStylesheets().add("stylesheet.css");
-        stage.setScene(new Scene(parentScene));
-        stage.show();
+        ScreenControls.switchScreens(loginSelected, ScreenControls.HOME_SCREEN_URL);
     }
 
 }
