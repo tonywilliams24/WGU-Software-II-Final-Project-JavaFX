@@ -11,6 +11,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import model.Appointment;
+import model.Customer;
 
 import java.io.IOException;
 
@@ -95,7 +97,7 @@ public class CustomerDetailScreen {
     private Button homeScreenButton;
 
     @FXML
-    void deleteCustomerButtonSelectedHandler(ActionEvent deleteCustomerButtonSelected) throws IOException {
+    void deleteCustomerButtonSelectedHandler(ActionEvent deleteCustomerButtonSelected) {
 
     }
 
@@ -105,7 +107,7 @@ public class CustomerDetailScreen {
     }
 
     @FXML
-    void deleteAppointmentButtonSelectedHandler(ActionEvent deleteAppointmentButtonSelected) throws IOException {
+    void deleteAppointmentButtonSelectedHandler(ActionEvent deleteAppointmentButtonSelected) {
 
     }
 
