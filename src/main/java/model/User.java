@@ -2,7 +2,7 @@ package model;
 
 import java.time.OffsetDateTime;
 
-public class User {
+public class User implements TableItem {
     private int User_ID;
     private String User_Name;
     private String Password;
@@ -65,5 +65,15 @@ public class User {
 
     public void setLast_Updated_By(String last_Updated_By) {
         Last_Updated_By = last_Updated_By;
+    }
+
+    @Override
+    public int getId() {
+        return User_ID;
+    }
+
+    @Override
+    public String getName() {
+        return User_Name;
     }
 }

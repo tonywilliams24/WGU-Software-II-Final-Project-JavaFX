@@ -2,7 +2,7 @@ package model;
 
 import java.time.OffsetDateTime;
 
-public class Appointment {
+public class Appointment implements TableItem {
     private int Appointment_ID;
     private String Title;
     private String Description;
@@ -129,4 +129,15 @@ public class Appointment {
     public void setContact_ID(int contact_ID) {
         Contact_ID = contact_ID;
     }
+
+    @Override
+    public int getId() {
+        return Appointment_ID;
+    }
+
+    @Override
+    public String getName() {
+        return Title;
+    }
+
 }

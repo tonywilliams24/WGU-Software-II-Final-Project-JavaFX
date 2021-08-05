@@ -1,6 +1,6 @@
 package model;
 
-public class Contact {
+public class Contact implements TableItem {
     private int Contact_ID;
     private String Contact_Name;
     private String Email;
@@ -27,5 +27,15 @@ public class Contact {
 
     public void setEmail(String email) {
         Email = email;
+    }
+
+    @Override
+    public int getId() {
+        return Contact_ID;
+    }
+
+    @Override
+    public String getName() {
+        return Contact_Name;
     }
 }

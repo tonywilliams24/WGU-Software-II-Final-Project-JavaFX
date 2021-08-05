@@ -2,11 +2,12 @@ package model;
 
 import java.time.OffsetDateTime;
 
-public class Customer {
+public class Customer implements TableItem {
     private int Customer_ID;
     private String Customer_Name;
     private String Address;
     private String Postal_Code;
+    private String Phone;
     private OffsetDateTime Create_Date;
     private String Created_By;
     private OffsetDateTime Last_Update;
@@ -43,6 +44,14 @@ public class Customer {
 
     public void setPostal_Code(String postal_Code) {
         Postal_Code = postal_Code;
+    }
+
+    public String getPhone() {
+        return Phone;
+    }
+
+    public void setPhone(String phone) {
+        Phone = phone;
     }
 
     public OffsetDateTime getCreate_Date() {
@@ -83,5 +92,15 @@ public class Customer {
 
     public void setDivision_ID(int division_ID) {
         Division_ID = division_ID;
+    }
+
+    @Override
+    public int getId() {
+        return Customer_ID;
+    }
+
+    @Override
+    public String getName() {
+        return Customer_Name;
     }
 }

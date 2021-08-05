@@ -2,11 +2,9 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TableView;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import model.Appointment;
 
 import java.io.IOException;
 
@@ -28,7 +26,35 @@ public class AppointmentDetailScreen {
     private RadioButton monthRadioButton;
 
     @FXML
-    private TableView<?> appointmentTable;
+    private TableView<Appointment> appointmentTable;
+
+    @FXML
+    private TableColumn<Appointment, Integer> appointmentIDcolumn;
+
+    @FXML
+    private TableColumn<Appointment, String> appointmentTitleColumn;
+
+    @FXML
+    private TableColumn<Appointment, String> appointmentDescriptionColumn;
+
+    @FXML
+    private TableColumn<Appointment, String> appointmentLocationColumn;
+
+    @FXML
+    private TableColumn<Appointment, String> appointmentContactColumn;
+
+    @FXML
+    private TableColumn<Appointment, String> appointmentTypeColumn;
+
+    @FXML
+    private TableColumn<Appointment, String> appointmentStartDateTimeColumn;
+
+    @FXML
+    private TableColumn<Appointment, String> appointmentEndDateTimeColumn;
+
+    @FXML
+    private TableColumn<Appointment, Integer> appoinmentCustomerId;
+
 
     @FXML
     private Button addAppointmentScreenButton;

@@ -25,8 +25,7 @@ public class ScreenControls {
         FXMLLoader destinationFxmlLoader = loadDestinationScreenFXML(destinationFxmlUrlString);
         Stage currentStage = getCurrentStage(switchScreensEvent);
         Scene destinationScene = setDestinationScene(destinationFxmlLoader);
-        currentStage.setScene(destinationScene);
-        currentStage.show();
+        applySceneToStage(currentStage, destinationScene);
     }
 
     private static FXMLLoader loadDestinationScreenFXML(String destinationFxmlUrlString) throws IOException {
@@ -47,5 +46,10 @@ public class ScreenControls {
         Scene destinationScene = new Scene(parentScene);
         destinationScene.getStylesheets().add("stylesheet.css");
         return destinationScene;
+    }
+
+    private static void applySceneToStage(Stage currentStage, Scene destinationScene) {
+        currentStage.setScene(destinationScene);
+        currentStage.show();
     }
 }

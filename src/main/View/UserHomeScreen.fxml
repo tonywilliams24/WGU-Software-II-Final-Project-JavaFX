@@ -28,17 +28,17 @@
                <children>
                   <TableView fx:id="customerTable" prefHeight="300.0" prefWidth="450.0">
                     <columns>
-                      <TableColumn prefWidth="151.0" text="Name" />
-                        <TableColumn prefWidth="133.0" text="Phone Number" />
-                        <TableColumn prefWidth="231.0" text="Country" />
+                      <TableColumn fx:id="customersNameColumn" prefWidth="151.0" text="Name" />
+                        <TableColumn fx:id="customersPhoneNumberColumn" prefWidth="133.0" text="Phone Number" />
+                        <TableColumn fx:id="customersCountryColumn" prefWidth="165.0" text="Country" />
                     </columns>
                   </TableView>
                   <TableView fx:id="appointmentTable" prefHeight="300.0" prefWidth="450.0">
                      <columns>
-                        <TableColumn prefWidth="103.0" text="Title" />
-                        <TableColumn prefWidth="93.0" text="Location" />
-                        <TableColumn prefWidth="133.0" text="Start Date / Time" />
-                        <TableColumn prefWidth="131.0" text="Customer" />
+                        <TableColumn fx:id="appointmentsTitleColumn" prefWidth="103.0" text="Title" />
+                        <TableColumn fx:id="appointmentsLocationColumn" prefWidth="93.0" text="Location" />
+                        <TableColumn fx:id="appointmentsStartDateTimeColumn" prefWidth="133.0" text="Start Date / Time" />
+                        <TableColumn fx:id="appointmentCustomerColumn" prefWidth="131.0" text="Customer" />
                      </columns>
                   </TableView>
                </children>

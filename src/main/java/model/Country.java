@@ -2,7 +2,7 @@ package model;
 
 import java.time.OffsetDateTime;
 
-public class Country {
+public class Country implements TableItem {
     private int Country_ID;
     private String Country;
     private OffsetDateTime Create_Date;
@@ -56,5 +56,15 @@ public class Country {
 
     public void setLast_Updated_By(String last_Updated_By) {
         Last_Updated_By = last_Updated_By;
+    }
+
+    @Override
+    public int getId() {
+        return Country_ID;
+    }
+
+    @Override
+    public String getName() {
+        return Country;
     }
 }

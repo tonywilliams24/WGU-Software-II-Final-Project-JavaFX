@@ -2,7 +2,7 @@ package model;
 
 import java.time.OffsetDateTime;
 
-public class First_Level_Division {
+public class First_Level_Division implements TableItem {
     private int Division_ID;
     private String Division;
     private OffsetDateTime Create_Date;
@@ -56,5 +56,15 @@ public class First_Level_Division {
 
     public void setCOUNTRY_ID(int COUNTRY_ID) {
         this.COUNTRY_ID = COUNTRY_ID;
+    }
+
+    @Override
+    public int getId() {
+        return Division_ID;
+    }
+
+    @Override
+    public String getName() {
+        return Division;
     }
 }
