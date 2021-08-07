@@ -13,6 +13,7 @@ public class Customer implements TableItem {
     private OffsetDateTime Last_Update;
     private String Last_Updated_By;
     private int Division_ID;
+    private String Country;
 
     public int getCustomer_ID() {
         return Customer_ID;
@@ -92,6 +93,14 @@ public class Customer implements TableItem {
 
     public void setDivision_ID(int division_ID) {
         Division_ID = division_ID;
+    }
+
+    public String getCountry() {
+        return Country;
+    }
+
+    public void setCountry(String country) {
+        Country = country;
     }
 
     @Override

@@ -1,6 +1,6 @@
 package model;
 
-interface TableItem {
+public interface TableItem {
 
     abstract int getId();
 

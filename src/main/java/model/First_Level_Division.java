@@ -6,6 +6,7 @@ public class First_Level_Division implements TableItem {
     private int Division_ID;
     private String Division;
     private OffsetDateTime Create_Date;
+    private String Created_By;
     private OffsetDateTime Last_Update;
     private String Last_Updated_By;
     private int COUNTRY_ID;
@@ -32,6 +33,14 @@ public class First_Level_Division implements TableItem {
 
     public void setCreate_Date(OffsetDateTime create_Date) {
         Create_Date = create_Date;
+    }
+
+    public String getCreated_By() {
+        return Created_By;
+    }
+
+    public void setCreated_By(String created_By) {
+        Created_By = created_By;
     }
 
     public OffsetDateTime getLast_Update() {

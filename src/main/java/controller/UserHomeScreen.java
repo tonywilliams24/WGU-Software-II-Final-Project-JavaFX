@@ -2,18 +2,19 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 import model.Appointment;
 import model.Customer;
+import model.TableItem;
 
 import java.io.IOException;
+
+import static model.Inventory.appointmentList;
+import static model.Inventory.customerList;
 
 public class UserHomeScreen {
 
@@ -21,7 +22,7 @@ public class UserHomeScreen {
     private AnchorPane anchorPane;
 
     @FXML
-    private TableView<Customer> customerTable;
+    private TableView<TableItem> customerTable;
 
     @FXML
     private TableColumn<Customer, String> customersNameColumn;
@@ -33,7 +34,7 @@ public class UserHomeScreen {
     private TableColumn<Customer, String> customersCountryColumn;
 
     @FXML
-    private TableView<Appointment> appointmentTable;
+    private TableView<TableItem> appointmentTable;
 
     @FXML
     private TableColumn<Appointment, String> appointmentsTitleColumn;
@@ -55,7 +56,15 @@ public class UserHomeScreen {
 
     @FXML
     public void initialize() {
-
+        customerTable.setItems(customerList.getList());
+        customersNameColumn.setCellValueFactory(new PropertyValueFactory<>("Customer_Name"));
+        customersPhoneNumberColumn.setCellValueFactory(new PropertyValueFactory<>("Phone"));
+        customersCountryColumn.setCellValueFactory(new PropertyValueFactory<>("Country"));
+        appointmentTable.setItems(appointmentList.getList());
+        appointmentsTitleColumn.setCellValueFactory(new PropertyValueFactory<>("Title"));
+        appointmentsLocationColumn.setCellValueFactory(new PropertyValueFactory<>("Location"));
+        appointmentsStartDateTimeColumn.setCellValueFactory(new PropertyValueFactory<>("Start"));
+        appointmentCustomerColumn.setCellValueFactory(new PropertyValueFactory<>("Customer_ID"));
     }
 
     @FXML
