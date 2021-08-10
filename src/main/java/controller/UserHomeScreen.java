@@ -25,28 +25,28 @@ public class UserHomeScreen {
     private TableView<TableItem> customerTable;
 
     @FXML
-    private TableColumn<Customer, String> customersNameColumn;
+    private TableColumn<Customer, String> customerNameColumn;
 
     @FXML
-    private TableColumn<Customer, String> customersPhoneNumberColumn;
+    private TableColumn<Customer, String> customerPhoneNumberColumn;
 
     @FXML
-    private TableColumn<Customer, String> customersCountryColumn;
+    private TableColumn<Customer, String> customerCountryColumn;
 
     @FXML
     private TableView<TableItem> appointmentTable;
 
     @FXML
-    private TableColumn<Appointment, String> appointmentsTitleColumn;
+    private TableColumn<Appointment, String> appointmentTitleColumn;
 
     @FXML
-    private TableColumn<Appointment, String> appointmentsLocationColumn;
+    private TableColumn<Appointment, String> appointmentLocationColumn;
 
     @FXML
-    private TableColumn<Appointment, String> appointmentsStartDateTimeColumn;
+    private TableColumn<Appointment, String> appointmentStartDateTimeColumn;
 
     @FXML
-    private TableColumn<Appointment, String> appointmentCustomerColumn;
+    private TableColumn<Appointment, String> appointmentCustomerIDColumn;
 
     @FXML
     private Button customerDetailScreenButton;
@@ -57,14 +57,14 @@ public class UserHomeScreen {
     @FXML
     public void initialize() {
         customerTable.setItems(customerList.getList());
-        customersNameColumn.setCellValueFactory(new PropertyValueFactory<>("Customer_Name"));
-        customersPhoneNumberColumn.setCellValueFactory(new PropertyValueFactory<>("Phone"));
-        customersCountryColumn.setCellValueFactory(new PropertyValueFactory<>("Country"));
+        customerNameColumn.setCellValueFactory(new PropertyValueFactory<>("Customer_Name"));
+        customerPhoneNumberColumn.setCellValueFactory(new PropertyValueFactory<>("Phone"));
+        customerCountryColumn.setCellValueFactory(new PropertyValueFactory<>("Country"));
         appointmentTable.setItems(appointmentList.getList());
-        appointmentsTitleColumn.setCellValueFactory(new PropertyValueFactory<>("Title"));
-        appointmentsLocationColumn.setCellValueFactory(new PropertyValueFactory<>("Location"));
-        appointmentsStartDateTimeColumn.setCellValueFactory(new PropertyValueFactory<>("Start"));
-        appointmentCustomerColumn.setCellValueFactory(new PropertyValueFactory<>("Customer_ID"));
+        appointmentTitleColumn.setCellValueFactory(new PropertyValueFactory<>("Title"));
+        appointmentLocationColumn.setCellValueFactory(new PropertyValueFactory<>("Location"));
+        appointmentStartDateTimeColumn.setCellValueFactory(new PropertyValueFactory<>("Start"));
+        appointmentCustomerIDColumn.setCellValueFactory(new PropertyValueFactory<>("Customer_ID"));
     }
 
     @FXML

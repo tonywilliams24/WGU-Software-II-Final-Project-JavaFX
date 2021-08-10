@@ -1,8 +1,10 @@
 package model;
 
+import controller.LoginScreen;
+
 import java.time.OffsetDateTime;
 
-public class Appointment implements TableItem {
+public class Appointment extends TableItem {
     private int Appointment_ID;
     private String Title;
     private String Description;
@@ -10,13 +12,44 @@ public class Appointment implements TableItem {
     private String Type;
     private OffsetDateTime Start;
     private OffsetDateTime End;
-    private OffsetDateTime Create_Date;
-    private String Created_By;
-    private OffsetDateTime Last_Update;
-    private String Last_Updated_By;
     private int Customer_ID;
     private int User_ID;
     private int Contact_ID;
+
+    public Appointment(){
+        super();
+    }
+
+    public Appointment(int appointment_ID, String title, String description, String location, String type, OffsetDateTime start, OffsetDateTime end, int customer_ID, int user_ID, int contact_ID) {
+        super();
+        Appointment_ID = appointment_ID;
+        Title = title;
+        Description = description;
+        Location = location;
+        Type = type;
+        Start = start;
+        End = end;
+        Customer_ID = customer_ID;
+        User_ID = user_ID;
+        Contact_ID = contact_ID;
+    }
+
+    public Appointment(int appointment_ID, String title, String description, String location, String type, OffsetDateTime start, OffsetDateTime end,  OffsetDateTime create_Date, String created_By, OffsetDateTime last_Update, String last_Updated_By, int customer_ID, int user_ID, int contact_ID) {
+        Appointment_ID = appointment_ID;
+        Title = title;
+        Description = description;
+        Location = location;
+        Type = type;
+        Start = start;
+        End = end;
+        Create_Date = create_Date;
+        Created_By = created_By;
+        Last_Update = last_Update;
+        Last_Updated_By = last_Updated_By;
+        Customer_ID = customer_ID;
+        User_ID = user_ID;
+        Contact_ID = contact_ID;
+    }
 
     public int getAppointment_ID() {
         return Appointment_ID;
@@ -72,38 +105,6 @@ public class Appointment implements TableItem {
 
     public void setEnd(OffsetDateTime end) {
         End = end;
-    }
-
-    public OffsetDateTime getCreate_Date() {
-        return Create_Date;
-    }
-
-    public void setCreate_Date(OffsetDateTime create_Date) {
-        Create_Date = create_Date;
-    }
-
-    public String getCreated_By() {
-        return Created_By;
-    }
-
-    public void setCreated_By(String created_By) {
-        Created_By = created_By;
-    }
-
-    public OffsetDateTime getLast_Update() {
-        return Last_Update;
-    }
-
-    public void setLast_Update(OffsetDateTime last_Update) {
-        Last_Update = last_Update;
-    }
-
-    public String getLast_Updated_By() {
-        return Last_Updated_By;
-    }
-
-    public void setLast_Updated_By(String last_Updated_By) {
-        Last_Updated_By = last_Updated_By;
     }
 
     public int getCustomer_ID() {

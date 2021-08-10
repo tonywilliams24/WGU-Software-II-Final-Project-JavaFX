@@ -2,19 +2,20 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 import model.Appointment;
 import model.Customer;
+import model.TableItem;
 
 import java.io.IOException;
+
+import static model.Inventory.appointmentList;
+import static model.Inventory.customerList;
 
 public class CustomerDetailScreen {
 
@@ -22,28 +23,28 @@ public class CustomerDetailScreen {
     private AnchorPane anchorPane;
 
     @FXML
-    private TableView<Customer> customersTable;
+    private TableView<TableItem> customerTable;
 
     @FXML
     private TableColumn<Customer, String> customerIdColumn;
 
     @FXML
-    private TableColumn<Customer, String> nameColumn;
+    private TableColumn<Customer, String> customerNameColumn;
 
     @FXML
-    private TableColumn<Customer, String> addressColumn;
+    private TableColumn<Customer, String> customerAddressColumn;
 
     @FXML
-    private TableColumn<Customer, String> postalCodeColumn;
+    private TableColumn<Customer, String> customerPostalCodeColumn;
 
     @FXML
-    private TableColumn<Customer, String> phoneNumberColumn;
+    private TableColumn<Customer, String> customerPhoneNumberColumn;
 
     @FXML
-    private TableColumn<Customer, String> firstLevelDivisionColumn;
+    private TableColumn<Customer, String> customerFirstLevelDivisionColumn;
 
     @FXML
-    private TableColumn<Customer, String> countryColumn;
+    private TableColumn<Customer, String> customerCountryColumn;
 
     @FXML
     private Button addCustomerButton;
@@ -61,25 +62,25 @@ public class CustomerDetailScreen {
     private ToggleGroup appointmentType;
 
     @FXML
-    private TableView<Appointment> appointmentsTable;
+    private TableView<TableItem> appointmentTable;
 
     @FXML
-    private TableColumn<Appointment, String> titleColumn;
+    private TableColumn<Appointment, String> appointmentTitleColumn;
 
     @FXML
-    private TableColumn<Appointment, String> descriptionColumn;
+    private TableColumn<Appointment, String> appointmentDescriptionColumn;
 
     @FXML
-    private TableColumn<Appointment, String> locationColumn;
+    private TableColumn<Appointment, String> appointmentLocationColumn;
 
     @FXML
-    private TableColumn<Appointment, String> typeColumn;
+    private TableColumn<Appointment, String> appointmentTypeColumn;
 
     @FXML
-    private TableColumn<Appointment, String> startDateTimeColumn;
+    private TableColumn<Appointment, String> appointmentStartDateTimeColumn;
 
     @FXML
-    private TableColumn<Appointment, String> endDateTimeColumn;
+    private TableColumn<Appointment, String> appointmentEndDateTimeColumn;
 
     @FXML
     private Button addAppointmentScreenButton;
@@ -95,6 +96,26 @@ public class CustomerDetailScreen {
 
     @FXML
     private Button homeScreenButton;
+    
+    @FXML
+    public void initialize(){
+        appointmentTable.setItems(appointmentList.getList());
+        appointmentTitleColumn.setCellValueFactory(new PropertyValueFactory<>("Title"));
+        appointmentDescriptionColumn.setCellValueFactory(new PropertyValueFactory<>("Description"));
+        appointmentLocationColumn.setCellValueFactory(new PropertyValueFactory<>("Location"));
+        appointmentTypeColumn.setCellValueFactory(new PropertyValueFactory<>("Type"));
+        appointmentStartDateTimeColumn.setCellValueFactory(new PropertyValueFactory<>("Start"));
+        appointmentEndDateTimeColumn.setCellValueFactory(new PropertyValueFactory<>("End"));
+        customerTable.setItems(customerList.getList());
+        customerIdColumn.setCellValueFactory(new PropertyValueFactory<>("Customer_ID"));
+        customerNameColumn.setCellValueFactory(new PropertyValueFactory<>("Customer_Name"));
+        customerAddressColumn.setCellValueFactory(new PropertyValueFactory<>("Address"));
+        customerPostalCodeColumn.setCellValueFactory(new PropertyValueFactory<>("Postal_Code"));
+        customerPhoneNumberColumn.setCellValueFactory(new PropertyValueFactory<>("Phone"));
+        customerFirstLevelDivisionColumn.setCellValueFactory(new PropertyValueFactory<>("Division_ID"));
+        customerCountryColumn.setCellValueFactory(new PropertyValueFactory<>("Country"));
+    }
+
 
     @FXML
     void deleteCustomerButtonSelectedHandler(ActionEvent deleteCustomerButtonSelected) {

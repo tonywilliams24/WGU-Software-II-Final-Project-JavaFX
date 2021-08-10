@@ -1,4 +1,3 @@
-import com.sun.scenario.effect.Offset;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,6 +11,11 @@ import java.util.Objects;
 import static model.Inventory.*;
 
 public class Main extends Application {
+    
+    static OffsetDateTime createDate = OffsetDateTime.parse("2021-08-06T00:00:00+00:00");
+    static String createdBy = "Test User";
+    static OffsetDateTime lastUpdate = OffsetDateTime.parse("2021-08-06T00:00:00+00:00");
+    static String lastUpdatedBy = "Test User";
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -24,65 +28,50 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-        Appointment appointment = new Appointment();
-        appointment.setAppointment_ID(1);
-        appointment.setTitle("Test Title");
-        appointment.setDescription("Test Description");
-        appointment.setLocation("Test Location");
-        appointment.setType("Test Type");
-        appointment.setStart(OffsetDateTime.parse("2021-08-07T00:00:00+00:00"));
-        appointment.setEnd(OffsetDateTime.parse("2021-08-07T00:00:00+00:00"));
-        appointment.setCreate_Date(OffsetDateTime.parse("2021-08-06T00:00:00+00:00"));
-        appointment.setCreated_By("Test User");
-        appointment.setLast_Update(OffsetDateTime.parse("2021-08-06T00:00:00+00:00"));
-        appointment.setLast_Updated_By("Test User");
-        appointment.setCustomer_ID(1);
-        appointment.setContact_ID(1);
-        appointment.setUser_ID((1));
-        appointmentList.add(appointment);
-        Contact contact = new Contact();
-        contact.setContact_ID(1);
-        contact.setContact_Name("Test");
-        contact.setEmail("test@test.com");
-        contactList.add(contact);
-        Country country = new Country();
-        country.setCountry_ID(1);
-        country.setCountry("Test Country");
-        country.setCreate_Date(OffsetDateTime.parse("2021-08-06T00:00:00+00:00"));
-        country.setCreated_By("Test User");
-        country.setLast_Update(OffsetDateTime.parse("2021-08-06T00:00:00+00:00"));
-        country.setLast_Updated_By("Test User");
-        countryList.add(country);
-        Customer customer = new Customer();
-        customer.setCustomer_ID(1);
-        customer.setCustomer_Name("Test Customer");
-        customer.setAddress("Test Address");
-        customer.setPostal_Code("Test Postal Code");
-        customer.setPhone("555-555-5555");
-        customer.setCreate_Date(OffsetDateTime.parse("2021-08-06T00:00:00+00:00"));
-        customer.setCreated_By("Test User");
-        customer.setLast_Update(OffsetDateTime.parse("2021-08-06T00:00:00+00:00"));
-        customer.setLast_Updated_By("Test User");
-        customer.setDivision_ID(1);
-        customerList.add(customer);
-        First_Level_Division firstLevelDivision = new First_Level_Division();
-        firstLevelDivision.setDivision_ID(1);
-        firstLevelDivision.setDivision("Test Division");
-        firstLevelDivision.setCreate_Date(OffsetDateTime.parse("2021-08-06T00:00:00+00:00"));
-        firstLevelDivision.setCreated_By("Test User");
-        firstLevelDivision.setLast_Update(OffsetDateTime.parse("2021-08-06T00:00:00+00:00"));
-        firstLevelDivision.setLast_Updated_By("Test User");
-        firstLevelDivision.setCOUNTRY_ID(1);
-        first_level_divisionList.add(firstLevelDivision);
-        User user = new User();
-        user.setUser_ID(1);
-        user.setUser_Name("Test User");
-        user.setPassword("testpassword");
-        user.setCreate_Date(OffsetDateTime.parse("2021-08-06T00:00:00+00:00"));
-        user.setCreated_By("Admin");
-        user.setLast_Update(OffsetDateTime.parse("2021-08-06T00:00:00+00:00"));
-        user.setLast_Updated_By("Admin");
-        userList.add(user);
+        addTestItemsToList();
         launch(args);
+    }
+//    private static void initiateTables() {
+//        AppointmentTable appointmentTable = new AppointmentTable();
+//    }
+
+    private static void addTestItemsToList() {
+        addTestAppointment();
+        addTestContact();
+        addTestCountry();
+        addTestCustomer();
+        addTestFirstLevelDivision();
+        addTestUser();
+    }
+
+    private static void addTestAppointment() {
+
+        Appointment appointment = new Appointment(1,"Test Title","Test Description","Test Location","Test Type", OffsetDateTime.parse("2021-08-07T00:00:00+00:00"), OffsetDateTime.parse("2021-08-07T00:00:00+00:00"), createDate, createdBy,lastUpdate,lastUpdatedBy,1,1,1);
+        appointmentList.add(appointment);
+    }
+
+    private static void addTestContact() {
+        Contact contact = new Contact(1,"Test","test@test.com");
+        contactList.add(contact);
+    }
+
+    private static void addTestCountry() {
+        Country country = new Country(1,"Test Country",createDate,createdBy,lastUpdate,lastUpdatedBy);
+        countryList.add(country);
+    }
+
+    private static void addTestCustomer() {
+        Customer customer = new Customer(1,"Test Customer","Test Address","Test Postal Code","555-555-5555",createDate,createdBy,lastUpdate, lastUpdatedBy,1,"Test Country");
+        customerList.add(customer);
+    }
+
+    private static void addTestFirstLevelDivision() {
+        First_Level_Division firstLevelDivision = new First_Level_Division(1,"Test Division",createDate,createdBy,lastUpdate,lastUpdatedBy,1);
+        first_level_divisionList.add(firstLevelDivision);
+    }
+
+    private static void addTestUser() {
+        User user = new User(1,"Test User","testpassword",createDate,"admin",lastUpdate,"admin");
+        userList.add(user);
     }
 }

@@ -3,10 +3,14 @@ package controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import model.Appointment;
+import model.TableItem;
 
 import java.io.IOException;
+
+import static model.Inventory.appointmentList;
 
 public class AppointmentDetailScreen {
 
@@ -26,7 +30,7 @@ public class AppointmentDetailScreen {
     private RadioButton monthRadioButton;
 
     @FXML
-    private TableView<Appointment> appointmentTable;
+    private TableView<TableItem> appointmentTable;
 
     @FXML
     private TableColumn<Appointment, Integer> appointmentIDcolumn;
@@ -53,7 +57,7 @@ public class AppointmentDetailScreen {
     private TableColumn<Appointment, String> appointmentEndDateTimeColumn;
 
     @FXML
-    private TableColumn<Appointment, Integer> appoinmentCustomerId;
+    private TableColumn<Appointment, Integer> appointmentCustomerId;
 
 
     @FXML
@@ -70,6 +74,19 @@ public class AppointmentDetailScreen {
 
     @FXML
     private Button homeScreenButton;
+
+    public void initialize() {
+        appointmentTable.setItems(appointmentList.getList());
+        appointmentIDcolumn.setCellValueFactory(new PropertyValueFactory<>("Appointment_ID"));
+        appointmentTitleColumn.setCellValueFactory(new PropertyValueFactory<>("Title"));
+        appointmentDescriptionColumn.setCellValueFactory(new PropertyValueFactory<>("Description"));
+        appointmentLocationColumn.setCellValueFactory(new PropertyValueFactory<>("Location"));
+        appointmentTypeColumn.setCellValueFactory(new PropertyValueFactory<>("Type"));
+        appointmentStartDateTimeColumn.setCellValueFactory(new PropertyValueFactory<>("Start"));
+        appointmentEndDateTimeColumn.setCellValueFactory(new PropertyValueFactory<>("End"));
+        appointmentCustomerId.setCellValueFactory(new PropertyValueFactory<>("Customer_ID"));
+        appointmentContactColumn.setCellValueFactory(new PropertyValueFactory<>("Contact_ID"));
+    }
 
     @FXML
     void allRadioButtonSelectedHandler(ActionEvent event) {

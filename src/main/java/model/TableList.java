@@ -8,6 +8,7 @@ import java.util.NoSuchElementException;
 public class TableList {
     private ObservableList<TableItem> list;
     private int length = 0;
+    private int cumulativeLength = 0;
 
     TableList() {
         this.list = FXCollections.observableArrayList();
@@ -16,12 +17,12 @@ public class TableList {
     public void add(TableItem item) {
         list.add(item);
         length++;
+        cumulativeLength++;
     }
 
     public void addAll(TableItem[] items) {
         for(TableItem tableItem: items) {
-            list.add(tableItem);
-            length++;
+            add(tableItem);
         }
     }
 
@@ -48,7 +49,10 @@ public class TableList {
     }
 
     public void delete(TableItem updateItem) {
-        if(list.contains(updateItem)) list.remove(updateItem);
+        if(list.contains(updateItem)) {
+            list.remove(updateItem);
+            length--;
+        }
         else throw new NoSuchElementException();
     }
 
@@ -57,11 +61,12 @@ public class TableList {
         return length;
     }
 
+    public int getCumulativeLength() {
+        return cumulativeLength;
+    }
+
     public ObservableList<TableItem> getList() {
         return list;
     }
 
-    public void setList(ObservableList<TableItem> list) {
-        this.list = list;
-    }
 }
