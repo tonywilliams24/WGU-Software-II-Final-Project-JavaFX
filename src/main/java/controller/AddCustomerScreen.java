@@ -20,6 +20,9 @@ public class AddCustomerScreen {
     private AnchorPane anchorPane;
 
     @FXML
+    private TextField nameTextField;
+
+    @FXML
     private TextField addressTextField;
 
     @FXML
@@ -27,9 +30,6 @@ public class AddCustomerScreen {
 
     @FXML
     private TextField phoneNumberTextField;
-
-    @FXML
-    private TextField nameTextField;
 
     @FXML
     private ComboBox<TableItem> countryComboBox;

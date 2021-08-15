@@ -5,8 +5,12 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.*;
 
+import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.util.Objects;
+import java.util.TimeZone;
 
 import static model.Inventory.*;
 
@@ -26,9 +30,13 @@ public class Main extends Application {
         primaryStage.show();
     }
 
-
     public static void main(String[] args) {
         addTestItemsToList();
+        TimeZone timeZone = TimeZone.getDefault();
+        System.out.println("Time Zone: " + timeZone.getDisplayName() + "\nRaw Offset: " + timeZone.getRawOffset()/3600000 + "\nDaylight Savings Time Offset: " + timeZone.getDSTSavings()/3600000);
+        System.out.println(ZoneOffset.systemDefault());
+        ZoneId zoneId = ZoneId.systemDefault();
+        System.out.println(zoneId.getRules().getOffset(LocalDateTime.now()));
         launch(args);
     }
 //    private static void initiateTables() {
