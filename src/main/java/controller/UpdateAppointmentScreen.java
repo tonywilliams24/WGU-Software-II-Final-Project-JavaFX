@@ -92,12 +92,14 @@ public class UpdateAppointmentScreen {
 
     @FXML
     void appointmentDetailScreenButtonHandler(ActionEvent appointmentDetailScreenButtonSelected) throws IOException {
-        ScreenControls.switchScreens(appointmentDetailScreenButtonSelected, ScreenControls.APPOINTMENT_DETAIL_SCREEN_URL);
+        ScreenControls screenControls = new ScreenControls(appointmentDetailScreenButtonSelected);
+        screenControls.switchScreens(ScreenControls.APPOINTMENT_DETAIL_SCREEN_URL);
     }
 
     @FXML
     void customerDetailScreenButtonHandler(ActionEvent customerDetailScreenButtonSelected) throws IOException {
-        ScreenControls.switchScreens(customerDetailScreenButtonSelected, ScreenControls.CUSTOMER_DETAIL_SCREEN_URL);
+        ScreenControls screenControls = new ScreenControls(customerDetailScreenButtonSelected);
+        screenControls.switchScreens(ScreenControls.CUSTOMER_DETAIL_SCREEN_URL);
     }
 
 }

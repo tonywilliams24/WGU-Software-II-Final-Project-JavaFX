@@ -1,7 +1,5 @@
 package model;
 
-import java.time.OffsetDateTime;
-
 public class First_Level_Division extends TableItem {
     private int Division_ID;
     private String Division;
@@ -16,7 +14,7 @@ public class First_Level_Division extends TableItem {
         Division = division;
         this.COUNTRY_ID = COUNTRY_ID;
     }
-    public First_Level_Division(int division_ID, String division, OffsetDateTime create_Date, String created_By, OffsetDateTime last_Update, String last_Updated_By, int COUNTRY_ID) {
+    public First_Level_Division(int division_ID, String division, DateTime create_Date, String created_By, DateTime last_Update, String last_Updated_By, int COUNTRY_ID) {
         Division_ID = division_ID;
         Division = division;
         Create_Date = create_Date;

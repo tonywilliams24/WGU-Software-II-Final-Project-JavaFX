@@ -43,7 +43,8 @@ public class LoginScreen {
 
     @FXML
     void submitHandler(ActionEvent loginSelected) throws IOException {
-        ScreenControls.switchScreens(loginSelected, ScreenControls.HOME_SCREEN_URL);
+        ScreenControls screenControls = new ScreenControls(loginSelected);
+        screenControls.switchScreens(ScreenControls.HOME_SCREEN_URL);
     }
 
 }

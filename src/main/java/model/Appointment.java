@@ -1,17 +1,13 @@
 package model;
 
-import controller.LoginScreen;
-
-import java.time.OffsetDateTime;
-
 public class Appointment extends TableItem {
     private int Appointment_ID;
     private String Title;
     private String Description;
     private String Location;
     private String Type;
-    private OffsetDateTime Start;
-    private OffsetDateTime End;
+    private DateTime Start;
+    private DateTime End;
     private int Customer_ID;
     private int User_ID;
     private int Contact_ID;
@@ -20,7 +16,7 @@ public class Appointment extends TableItem {
         super();
     }
 
-    public Appointment(int appointment_ID, String title, String description, String location, String type, OffsetDateTime start, OffsetDateTime end, int customer_ID, int user_ID, int contact_ID) {
+    public Appointment(int appointment_ID, String title, String description, String location, String type, DateTime start, DateTime end, int customer_ID, int user_ID, int contact_ID) {
         super();
         Appointment_ID = appointment_ID;
         Title = title;
@@ -34,7 +30,7 @@ public class Appointment extends TableItem {
         Contact_ID = contact_ID;
     }
 
-    public Appointment(int appointment_ID, String title, String description, String location, String type, OffsetDateTime start, OffsetDateTime end,  OffsetDateTime create_Date, String created_By, OffsetDateTime last_Update, String last_Updated_By, int customer_ID, int user_ID, int contact_ID) {
+    public Appointment(int appointment_ID, String title, String description, String location, String type, DateTime start, DateTime end,  DateTime create_Date, String created_By, DateTime last_Update, String last_Updated_By, int customer_ID, int user_ID, int contact_ID) {
         Appointment_ID = appointment_ID;
         Title = title;
         Description = description;
@@ -91,19 +87,19 @@ public class Appointment extends TableItem {
         Type = type;
     }
 
-    public OffsetDateTime getStart() {
+    public DateTime getStart() {
         return Start;
     }
 
-    public void setStart(OffsetDateTime start) {
+    public void setStart(DateTime start) {
         Start = start;
     }
 
-    public OffsetDateTime getEnd() {
+    public DateTime getEnd() {
         return End;
     }
 
-    public void setEnd(OffsetDateTime end) {
+    public void setEnd(DateTime end) {
         End = end;
     }
 

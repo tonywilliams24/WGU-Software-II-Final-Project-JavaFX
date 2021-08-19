@@ -9,20 +9,21 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import model.Appointment;
+import model.DateTime;
 import model.MeridiemIndicator;
 import model.TableItem;
 
 import java.io.IOException;
 import java.time.*;
 
-import static controller.inputControls.SYSTEM_ZONE_OFFSET;
+import static controller.inputControls.*;
 import static model.Inventory.appointmentList;
 import static model.MeridiemIndicator.AM;
 import static model.MeridiemIndicator.PM;
 
 public class AddAppointmentScreen {
-    OffsetDateTime startDateTIme;
-    OffsetDateTime endDateTIme;
+    DateTime startDateTIme;
+    DateTime endDateTIme;
 
 
     @FXML
@@ -87,7 +88,15 @@ public class AddAppointmentScreen {
 
     @FXML
     public void initialize(){
-
+        setContactComboBox(contactComboBox);
+        setHourComboBox(startTimeHourComboBox);
+        setMinuteComboBox(startTimeMinuteComboBox);
+        setMeridiemChoiceBox(startTimeMeridiemChoiceBox);
+        setHourComboBox(endTimeHourComboBox);
+        setMinuteComboBox(endTimeMinuteComboBox);
+        setMeridiemChoiceBox(endTimeMeridiemChoiceBox);
+        setCustomerComboBox(customerComboBox);
+        setUserComboBox(userComboBox);
     }
 
     @FXML
@@ -117,8 +126,8 @@ public class AddAppointmentScreen {
 
         LocalTime startTime = LocalTime.of(startTimeHour,startTimeMinute);
         LocalTime endTime = LocalTime.of(endTimeHour,endTimeMinute);
-        startDateTIme = OffsetDateTime.of(startDate,startTime, SYSTEM_ZONE_OFFSET);
-        endDateTIme = OffsetDateTime.of(endDate,endTime, SYSTEM_ZONE_OFFSET);
+        startDateTIme = new DateTime(OffsetDateTime.of(startDate,startTime, SYSTEM_ZONE_OFFSET));
+        endDateTIme = new DateTime(OffsetDateTime.of(endDate,endTime, SYSTEM_ZONE_OFFSET));
 
         Appointment appointment = new Appointment(Appointment_ID,Title,Description,Location,Type,startDateTIme,endDateTIme,Customer_ID,User_ID,Contact_ID);
         appointmentList.add(appointment);
@@ -131,12 +140,14 @@ public class AddAppointmentScreen {
 
     @FXML
     void appointmentDetailScreenButtonHandler(ActionEvent appointmentDetailScreenButtonSelected) throws IOException {
-        ScreenControls.switchScreens(appointmentDetailScreenButtonSelected, ScreenControls.APPOINTMENT_DETAIL_SCREEN_URL);
+        ScreenControls screenControls = new ScreenControls(appointmentDetailScreenButtonSelected);
+        screenControls.switchScreens(ScreenControls.APPOINTMENT_DETAIL_SCREEN_URL);
     }
 
     @FXML
     void customerDetailScreenButtonHandler(ActionEvent customerDetailScreenButtonSelected) throws IOException {
-        ScreenControls.switchScreens(customerDetailScreenButtonSelected, ScreenControls.CUSTOMER_DETAIL_SCREEN_URL);
+        ScreenControls screenControls = new ScreenControls(customerDetailScreenButtonSelected);
+        screenControls.switchScreens(ScreenControls.CUSTOMER_DETAIL_SCREEN_URL);
     }
 
 }

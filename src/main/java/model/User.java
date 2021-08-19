@@ -1,7 +1,5 @@
 package model;
 
-import java.time.OffsetDateTime;
-
 public class User extends TableItem {
     private int User_ID;
     private String User_Name;
@@ -18,7 +16,7 @@ public class User extends TableItem {
         Password = password;
     }
 
-    public User(int user_ID, String user_Name, String password, OffsetDateTime create_Date, String created_By, OffsetDateTime last_Update, String last_Updated_By) {
+    public User(int user_ID, String user_Name, String password, DateTime create_Date, String created_By, DateTime last_Update, String last_Updated_By) {
         User_ID = user_ID;
         User_Name = user_Name;
         Password = password;

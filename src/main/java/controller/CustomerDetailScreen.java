@@ -2,6 +2,7 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -139,27 +140,33 @@ public class CustomerDetailScreen {
 
     @FXML
     void addCustomerButtonSelectedHandler(ActionEvent addCustomerButtonSelected) throws IOException {
-        ScreenControls.switchScreens(addCustomerButtonSelected, ScreenControls.ADD_CUSTOMER_SCREEN_URL);
+        ScreenControls screenControls = new ScreenControls(addCustomerButtonSelected);
+        screenControls.switchScreens(ScreenControls.ADD_CUSTOMER_SCREEN_URL);
     }
 
     @FXML
     void updateCustomerButtonSelectedHandler(ActionEvent updateCustomerButtonSelected) throws IOException {
-        ScreenControls.switchScreens(updateCustomerButtonSelected, ScreenControls.UPDATE_CUSTOMER_SCREEN_URL);
+        ScreenControls screenControls = new ScreenControls(updateCustomerButtonSelected);
+        screenControls.switchScreens(ScreenControls.UPDATE_CUSTOMER_SCREEN_URL);
+
     }
 
     @FXML
     void addAppointmentScreenButtonSelectedHandler(ActionEvent addAppointmentScreenButtonSelected) throws IOException {
-        ScreenControls.switchScreens(addAppointmentScreenButtonSelected, ScreenControls.ADD_APPOINTMENT_SCREEN_URL);
+        ScreenControls screenControls = new ScreenControls(addAppointmentScreenButtonSelected);
+        screenControls.switchScreens(ScreenControls.ADD_APPOINTMENT_SCREEN_URL);
     }
 
     @FXML
     void updateAppointmentScreenButtonSelectedHandler(ActionEvent updateAppointmentScreenButtonSelected) throws IOException {
-        ScreenControls.switchScreens(updateAppointmentScreenButtonSelected, ScreenControls.UPDATE_APPOINTMENT_SCREEN_URL);
+        ScreenControls screenControls = new ScreenControls(updateAppointmentScreenButtonSelected);
+        screenControls.switchScreens(ScreenControls.UPDATE_APPOINTMENT_SCREEN_URL);
     }
 
     @FXML
     void homeScreenButtonSelectedHandler(ActionEvent homeScreenButtonSelected) throws IOException {
-        ScreenControls.switchScreens(homeScreenButtonSelected, ScreenControls.HOME_SCREEN_URL);
+        ScreenControls screenControls = new ScreenControls(homeScreenButtonSelected);
+        screenControls.switchScreens(ScreenControls.HOME_SCREEN_URL);
     }
 
 

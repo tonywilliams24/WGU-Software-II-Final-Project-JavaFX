@@ -21,34 +21,58 @@ public class ScreenControls {
     public static final String APPOINTMENT_DETAIL_SCREEN_URL = "file:src/main/View/AppointmentDetailScreen.fxml";
     public static final String LOGIN_SCREEN_URL = "file:src/main/View/LoginScreen.fxml";
 
-    public static void switchScreens(ActionEvent switchScreensEvent, String destinationFxmlUrlString) throws IOException {
-        FXMLLoader destinationFxmlLoader = loadDestinationScreenFXML(destinationFxmlUrlString);
-        Stage currentStage = getCurrentStage(switchScreensEvent);
-        Scene destinationScene = setDestinationScene(destinationFxmlLoader);
+    private String destinationFxmlUrlString;
+    private FXMLLoader destinationFxmlLoader;
+    private final ActionEvent switchScreensEvent;
+    private Stage currentStage;
+    private Scene destinationScene;
+
+    public ScreenControls(ActionEvent switchScreensEvent) {
+        this.switchScreensEvent = switchScreensEvent;
+    }
+
+    public ScreenControls(ActionEvent switchScreensEvent, String destinationFxmlUrlString) {
+        this.switchScreensEvent = switchScreensEvent;
+        this.destinationFxmlUrlString = destinationFxmlUrlString;
+    }
+
+    public void switchScreens() throws IOException {
+        loadDestinationScreenFXML();
+        currentStage = getCurrentStage();
+        destinationScene = setDestinationScene();
         applySceneToStage(currentStage, destinationScene);
     }
 
-    private static FXMLLoader loadDestinationScreenFXML(String destinationFxmlUrlString) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(new URL(destinationFxmlUrlString));
-        fxmlLoader.load();
-        return fxmlLoader;
+    public void switchScreens(String destinationFxmlUrlString) throws IOException {
+        this.destinationFxmlUrlString = destinationFxmlUrlString;
+        loadDestinationScreenFXML();
+        currentStage = getCurrentStage();
+        destinationScene = setDestinationScene();
+        applySceneToStage(currentStage, destinationScene);
     }
 
-    private static Stage getCurrentStage(ActionEvent buttonSelection) {
-        Button selectedButton = ((Button) buttonSelection.getSource());
+
+    private FXMLLoader loadDestinationScreenFXML() throws IOException {
+        destinationFxmlLoader = new FXMLLoader();
+        destinationFxmlLoader.setLocation(new URL(destinationFxmlUrlString));
+        destinationFxmlLoader.load();
+        return destinationFxmlLoader;
+    }
+
+    private Stage getCurrentStage() {
+        Button selectedButton = ((Button) switchScreensEvent.getSource());
         Scene currentScene = selectedButton.getScene();
         return (Stage) currentScene.getWindow();
     }
 
-    private static Scene setDestinationScene(FXMLLoader fxmlLoader) {
-        Parent parentScene = fxmlLoader.getRoot();
+    private Scene setDestinationScene() {
+        Parent parentScene = destinationFxmlLoader.getRoot();
         Scene destinationScene = new Scene(parentScene);
         destinationScene.getStylesheets().add("stylesheet.css");
         return destinationScene;
     }
 
-    private static void applySceneToStage(Stage currentStage, Scene destinationScene) {
+    private void applySceneToStage(Stage currentStage, Scene destinationScene) {
         currentStage.setScene(destinationScene);
         currentStage.show();
     }

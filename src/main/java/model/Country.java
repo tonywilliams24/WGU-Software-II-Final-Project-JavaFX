@@ -2,7 +2,6 @@ package model;
 
 import controller.LoginScreen;
 
-import java.time.OffsetDateTime;
 
 public class Country extends TableItem {
     private int Country_ID;
@@ -18,7 +17,7 @@ public class Country extends TableItem {
         Country = country;
     }
 
-    public Country(int country_ID, String country, OffsetDateTime create_Date, String created_By, OffsetDateTime last_Update, String last_Updated_By) {
+    public Country(int country_ID, String country, DateTime create_Date, String created_By, DateTime last_Update, String last_Updated_By) {
         Country_ID = country_ID;
         Country = country;
         Create_Date = create_Date;

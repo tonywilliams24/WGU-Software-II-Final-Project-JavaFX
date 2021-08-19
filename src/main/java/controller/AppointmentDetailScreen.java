@@ -10,6 +10,7 @@ import model.TableItem;
 
 import java.io.IOException;
 
+import static controller.ScreenControls.*;
 import static model.Inventory.appointmentList;
 
 public class AppointmentDetailScreen {
@@ -115,17 +116,20 @@ public class AppointmentDetailScreen {
 
     @FXML
     void addAppointmentScreenButtonSelectedHandler(ActionEvent addAppointmentScreenButtonSelected) throws IOException {
-        ScreenControls.switchScreens(addAppointmentScreenButtonSelected, ScreenControls.ADD_APPOINTMENT_SCREEN_URL);
+        ScreenControls screenControls = new ScreenControls(addAppointmentScreenButtonSelected);
+        screenControls.switchScreens(ADD_APPOINTMENT_SCREEN_URL);
     }
 
     @FXML
     void updateAppointmentScreenButtonSelectedHandler(ActionEvent updateAppointmentScreenButtonSelected) throws IOException {
-        ScreenControls.switchScreens(updateAppointmentScreenButtonSelected, ScreenControls.UPDATE_APPOINTMENT_SCREEN_URL);
+        ScreenControls screenControls = new ScreenControls(updateAppointmentScreenButtonSelected);
+        screenControls.switchScreens(UPDATE_APPOINTMENT_SCREEN_URL);
     }
 
     @FXML
     void homeScreenButtonSelectedHandler(ActionEvent homeScreenButtonSelected) throws IOException {
-        ScreenControls.switchScreens(homeScreenButtonSelected, ScreenControls.HOME_SCREEN_URL);
+        ScreenControls screenControls = new ScreenControls(homeScreenButtonSelected);
+        screenControls.switchScreens(HOME_SCREEN_URL);
     }
 
 }

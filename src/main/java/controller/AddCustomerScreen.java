@@ -12,6 +12,8 @@ import model.TableItem;
 
 import java.io.IOException;
 
+import static controller.inputControls.setCountryComboBox;
+import static controller.inputControls.setFirstLevelDivisionComboBox;
 import static model.Inventory.*;
 
 public class AddCustomerScreen {
@@ -48,8 +50,8 @@ public class AddCustomerScreen {
 
     @FXML
     public void initialize() {
-        firstLevelDivisionComboBox.setItems(first_level_divisionList.getList());
-        countryComboBox.setItems(countryList.getList());
+        setFirstLevelDivisionComboBox(firstLevelDivisionComboBox);
+        setCountryComboBox(countryComboBox);
     }
 
     @FXML
@@ -75,7 +77,8 @@ public class AddCustomerScreen {
 
     @FXML
     void goBackButtonSelectedHandler(ActionEvent goBackButtonSelected) throws IOException {
-        ScreenControls.switchScreens(goBackButtonSelected, ScreenControls.CUSTOMER_DETAIL_SCREEN_URL);
+        ScreenControls screenControls = new ScreenControls(goBackButtonSelected);
+        screenControls.switchScreens(ScreenControls.CUSTOMER_DETAIL_SCREEN_URL);
     }
 
 }

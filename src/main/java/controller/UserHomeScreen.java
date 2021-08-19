@@ -69,17 +69,20 @@ public class UserHomeScreen {
 
     @FXML
     private void appointmentDetailScreenButtonHandler(ActionEvent appointmentDetailScreenButtonSelected) throws IOException {
-        ScreenControls.switchScreens(appointmentDetailScreenButtonSelected, ScreenControls.APPOINTMENT_DETAIL_SCREEN_URL);
+        ScreenControls screenControls = new ScreenControls(appointmentDetailScreenButtonSelected);
+        screenControls.switchScreens(ScreenControls.APPOINTMENT_DETAIL_SCREEN_URL);
     }
 
     @FXML
     private void customerDetailScreenButtonHandler(ActionEvent customerDetailScreenButtonSelected) throws IOException {
-        ScreenControls.switchScreens(customerDetailScreenButtonSelected, ScreenControls.CUSTOMER_DETAIL_SCREEN_URL);
+        ScreenControls screenControls = new ScreenControls(customerDetailScreenButtonSelected);
+        screenControls.switchScreens(ScreenControls.CUSTOMER_DETAIL_SCREEN_URL);
     }
 
     @FXML
     private void logOutButtonSelectedHandler(ActionEvent logOutButtonSelected) throws IOException {
-        ScreenControls.switchScreens(logOutButtonSelected, ScreenControls.LOGIN_SCREEN_URL);
+        ScreenControls screenControls = new ScreenControls(logOutButtonSelected);
+        screenControls.switchScreens(ScreenControls.LOGIN_SCREEN_URL);
     }
 
 }

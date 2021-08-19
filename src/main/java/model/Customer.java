@@ -2,7 +2,6 @@ package model;
 
 import controller.LoginScreen;
 
-import java.time.OffsetDateTime;
 
 public class Customer extends TableItem {
     private int Customer_ID;
@@ -13,7 +12,7 @@ public class Customer extends TableItem {
     private int Division_ID;
     private String Country;
 
-    public Customer(int customer_ID, String customer_Name, String address, String postal_Code, String phone, OffsetDateTime create_Date, String created_By, OffsetDateTime last_Update, String last_Updated_By, int division_ID, String country) {
+    public Customer(int customer_ID, String customer_Name, String address, String postal_Code, String phone, DateTime create_Date, String created_By, DateTime last_Update, String last_Updated_By, int division_ID, String country) {
         Customer_ID = customer_ID;
         Customer_Name = customer_Name;
         Address = address;

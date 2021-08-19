@@ -5,20 +5,21 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.*;
 
-import java.time.LocalDateTime;
-import java.time.OffsetDateTime;
-import java.time.ZoneId;
-import java.time.ZoneOffset;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+import java.time.zone.ZoneRules;
 import java.util.Objects;
 import java.util.TimeZone;
 
+import static model.DateTime.convertTimeZone;
 import static model.Inventory.*;
 
 public class Main extends Application {
     
-    static OffsetDateTime createDate = OffsetDateTime.parse("2021-08-06T00:00:00+00:00");
+    static DateTime createDate = new DateTime(OffsetDateTime.parse("2021-08-06T00:00:00+00:00"));
     static String createdBy = "Test User";
-    static OffsetDateTime lastUpdate = OffsetDateTime.parse("2021-08-06T00:00:00+00:00");
+    static DateTime lastUpdate = new DateTime(OffsetDateTime.parse("2021-08-06T00:00:00+00:00"));
     static String lastUpdatedBy = "Test User";
 
     @Override
@@ -36,12 +37,20 @@ public class Main extends Application {
         System.out.println("Time Zone: " + timeZone.getDisplayName() + "\nRaw Offset: " + timeZone.getRawOffset()/3600000 + "\nDaylight Savings Time Offset: " + timeZone.getDSTSavings()/3600000);
         System.out.println(ZoneOffset.systemDefault());
         ZoneId zoneId = ZoneId.systemDefault();
+        OffsetDateTime test = OffsetDateTime.ofInstant(Instant.now(),ZoneOffset.systemDefault());
         System.out.println(zoneId.getRules().getOffset(LocalDateTime.now()));
+        System.out.println(zoneId.getRules().getOffset(LocalDateTime.now()));
+        System.out.println(((Appointment)appointmentList.getList().get(0)).getStart());
+        System.out.println(convertTimeZone(((Appointment)appointmentList.getList().get(0)).getStart()));
+        System.out.println();
         launch(args);
     }
 //    private static void initiateTables() {
 //        AppointmentTable appointmentTable = new AppointmentTable();
 //    }
+
+
+
 
     private static void addTestItemsToList() {
         addTestAppointment();
@@ -54,7 +63,7 @@ public class Main extends Application {
 
     private static void addTestAppointment() {
 
-        Appointment appointment = new Appointment(1,"Test Title","Test Description","Test Location","Test Type", OffsetDateTime.parse("2021-08-07T00:00:00+00:00"), OffsetDateTime.parse("2021-08-07T00:00:00+00:00"), createDate, createdBy,lastUpdate,lastUpdatedBy,1,1,1);
+        Appointment appointment = new Appointment(1,"Test Title","Test Description","Test Location","Test Type", new DateTime(OffsetDateTime.parse("2021-08-07T00:00:00-07:00")), new DateTime(OffsetDateTime.parse("2021-08-07T00:00:00-07:00")), createDate, createdBy,lastUpdate,lastUpdatedBy,1,1,1);
         appointmentList.add(appointment);
     }
 

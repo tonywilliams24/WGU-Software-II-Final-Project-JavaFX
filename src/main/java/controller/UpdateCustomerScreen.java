@@ -60,7 +60,8 @@ public class UpdateCustomerScreen {
 
     @FXML
     void goBackButtonHandler(ActionEvent goBackButtonSelected) throws IOException {
-        ScreenControls.switchScreens(goBackButtonSelected, ScreenControls.CUSTOMER_DETAIL_SCREEN_URL);
+        ScreenControls screenControls = new ScreenControls(goBackButtonSelected);
+        screenControls.switchScreens(ScreenControls.CUSTOMER_DETAIL_SCREEN_URL);
     }
 
 }
