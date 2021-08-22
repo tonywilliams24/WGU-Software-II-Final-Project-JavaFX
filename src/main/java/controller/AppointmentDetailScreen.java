@@ -31,7 +31,7 @@ public class AppointmentDetailScreen {
     private RadioButton monthRadioButton;
 
     @FXML
-    private TableView<TableItem> appointmentTable;
+    private TableView<Appointment> appointmentTable;
 
     @FXML
     private TableColumn<Appointment, Integer> appointmentIDcolumn;

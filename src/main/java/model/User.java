@@ -56,6 +56,11 @@ public class User extends TableItem {
     }
 
     @Override
+    public String getIdString() {
+        return Integer.toString(User_ID);
+    }
+
+    @Override
     public String getName() {
         return User_Name;
     }

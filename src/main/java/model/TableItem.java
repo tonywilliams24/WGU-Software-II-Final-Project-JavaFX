@@ -18,6 +18,8 @@ public abstract class TableItem {
 
     public abstract int getId();
 
+    public abstract String getIdString();
+
     public abstract String getName();
 
     public boolean equals(TableItem tableItem) {

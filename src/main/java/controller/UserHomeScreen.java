@@ -22,7 +22,7 @@ public class UserHomeScreen {
     private AnchorPane anchorPane;
 
     @FXML
-    private TableView<TableItem> customerTable;
+    private TableView<Customer> customerTable;
 
     @FXML
     private TableColumn<Customer, String> customerNameColumn;
@@ -34,7 +34,7 @@ public class UserHomeScreen {
     private TableColumn<Customer, String> customerCountryColumn;
 
     @FXML
-    private TableView<TableItem> appointmentTable;
+    private TableView<Appointment> appointmentTable;
 
     @FXML
     private TableColumn<Appointment, String> appointmentTitleColumn;

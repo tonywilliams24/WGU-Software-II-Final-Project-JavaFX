@@ -1,6 +1,9 @@
 package model;
 
+import controller.CustomerForm;
 import controller.LoginScreen;
+
+import static model.Inventory.customerList;
 
 
 public class Customer extends TableItem {
@@ -34,6 +37,28 @@ public class Customer extends TableItem {
         Phone = phone;
         Division_ID = division_ID;
         Country = country;
+    }
+    public Customer(CustomerForm customerForm) {
+        super();
+        int Customer_ID = customerForm.getCustomer_ID();
+        String Customer_Name = customerForm.getNameTextField().getText().trim();
+        String Address = customerForm.getAddressTextField().getText().trim();
+        String Postal_Code = customerForm.getPostalCodeTextField().getText().trim();
+        String Phone = customerForm.getPhoneNumberTextField().getText().trim();
+        int Division_ID = customerForm.getFirstLevelDivisionComboBox().getItems().get(0).getId();
+        String Country = customerForm.getCountryComboBox().getItems().get(0).getName();
+    }
+
+    public static void addToCustomerList(int customer_ID, String Customer_Name, String Address, String Postal_Code, String Phone, int Division_ID, String Country) {
+        customerList.add(new Customer(customer_ID, Customer_Name, Address, Postal_Code, Phone, Division_ID, Country));
+    }
+
+    public static void addToCustomerList(Customer customer) {
+        customerList.add(customer);
+    }
+
+    public static void addToCustomerList(CustomerForm customerForm) {
+        customerList.add(new Customer(customerForm));
     }
 
     public Customer() {
@@ -99,6 +124,11 @@ public class Customer extends TableItem {
     @Override
     public int getId() {
         return Customer_ID;
+    }
+
+    @Override
+    public String getIdString() {
+        return Integer.toString(Customer_ID);
     }
 
     @Override

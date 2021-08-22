@@ -2,16 +2,17 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
+import model.Country;
+import model.Customer;
+import model.First_Level_Division;
 
 import java.io.IOException;
+
+import static model.Inventory.*;
 
 public class UpdateCustomerScreen {
 
@@ -31,10 +32,10 @@ public class UpdateCustomerScreen {
     private TextField nameTextField;
 
     @FXML
-    private ComboBox<?> countryComboBox;
+    private ComboBox<Country> countryComboBox;
 
     @FXML
-    private ComboBox<?> firstLevelDivisionComboBox;
+    private ComboBox<First_Level_Division> firstLevelDivisionComboBox;
 
     @FXML
     private TextField idTextField;
@@ -48,6 +49,16 @@ public class UpdateCustomerScreen {
     @FXML
     private Button goBackButton;
 
+    public void sendSelectedCustomerToScreen(Customer customer){
+        idTextField.setText(customer.getIdString());
+        nameTextField.setText(customer.getCustomer_Name());
+        addressTextField.setText(customer.getAddress());
+        postalCodeTextField.setText(customer.getPostal_Code());
+        firstLevelDivisionComboBox.getSelectionModel().select(first_level_divisionList.lookup(customer.getDivision_ID()));
+        countryComboBox.getSelectionModel().select(countryList.lookup(customer.getCountry()));
+    }
+
+
     @FXML
     void clearButtonHandler(ActionEvent event) {
 
@@ -55,6 +66,8 @@ public class UpdateCustomerScreen {
 
     @FXML
     void updateCustomerButtonHandler(ActionEvent event) {
+        int Customer_ID = Integer.parseInt(idTextField.getText());
+        inputControls.extractCustomerData(new CustomerForm(Customer_ID, nameTextField, addressTextField, postalCodeTextField, phoneNumberTextField, firstLevelDivisionComboBox, countryComboBox));
 
     }
 

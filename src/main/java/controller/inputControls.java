@@ -5,15 +5,22 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import model.Appointment;
+import model.Contact;
+import model.Country;
+import model.Customer;
+import model.First_Level_Division;
 import model.MeridiemIndicator;
 import model.TableItem;
 import model.TableList;
+import model.User;
 
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.zone.ZoneRules;
 
+import static model.Customer.addToCustomerList;
 import static model.Inventory.*;
 
 public class inputControls {
@@ -46,31 +53,31 @@ public class inputControls {
         setIntegerComboBox(box,0,60);
     }
 
-    public static void setAppointmentComboBox(ComboBox<TableItem> box) {
+    public static void setAppointmentComboBox(ComboBox<Appointment> box) {
         setTableItemComboBox(box, appointmentList);
     }
 
-    public static void setContactComboBox(ComboBox<TableItem> box) {
+    public static void setContactComboBox(ComboBox<Contact> box) {
         setTableItemComboBox(box, contactList);
     }
 
-    public static void setCountryComboBox(ComboBox<TableItem> box) {
+    public static void setCountryComboBox(ComboBox<Country> box) {
         setTableItemComboBox(box, countryList);
     }
 
-    public static void setCustomerComboBox(ComboBox<TableItem> box) {
+    public static void setCustomerComboBox(ComboBox<Customer> box) {
         setTableItemComboBox(box, customerList);
     }
 
-    public static void setFirstLevelDivisionComboBox(ComboBox<TableItem> box) {
+    public static void setFirstLevelDivisionComboBox(ComboBox<First_Level_Division> box) {
         setTableItemComboBox(box, first_level_divisionList);
     }
 
-    public static void setUserComboBox(ComboBox<TableItem> box) {
+    public static void setUserComboBox(ComboBox<User> box) {
         setTableItemComboBox(box, userList);
     }
 
-    private static void setTableItemComboBox(ComboBox<TableItem> box, TableList tableList) {
+    private static <T extends TableItem> void setTableItemComboBox(ComboBox<T> box, TableList<T> tableList) {
         box.setItems(tableList.getList());
     }
 
@@ -79,4 +86,16 @@ public class inputControls {
         for(int i = min; i<=max; i++) integers.add(i);
         box.setItems(integers);
     }
+
+    public static void extractCustomerData(CustomerForm customerForm) {
+        String Customer_Name = customerForm.getNameTextField().getText().trim();
+        String Address = customerForm.getAddressTextField().getText().trim();
+        String Postal_Code = customerForm.getPostalCodeTextField().getText().trim();
+        String Phone = customerForm.getPhoneNumberTextField().getText().trim();
+        int Division_ID = customerForm.getFirstLevelDivisionComboBox().getItems().get(0).getId();
+        String Country = customerForm.getCountryComboBox().getItems().get(0).getName();
+        addToCustomerList(customerForm.getCustomer_ID(), Customer_Name, Address, Postal_Code, Phone, Division_ID, Country);
+        customerForm.clearForm();
+    }
+
 }

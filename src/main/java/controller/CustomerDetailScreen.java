@@ -24,7 +24,7 @@ public class CustomerDetailScreen {
     private AnchorPane anchorPane;
 
     @FXML
-    private TableView<TableItem> customerTable;
+    private TableView<Customer> customerTable;
 
     @FXML
     private TableColumn<Customer, String> customerIdColumn;
@@ -63,7 +63,7 @@ public class CustomerDetailScreen {
     private ToggleGroup appointmentType;
 
     @FXML
-    private TableView<TableItem> appointmentTable;
+    private TableView<Appointment> appointmentTable;
 
     @FXML
     private TableColumn<Appointment, String> appointmentTitleColumn;

@@ -8,10 +8,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import model.Appointment;
-import model.DateTime;
-import model.MeridiemIndicator;
-import model.TableItem;
+import model.*;
 
 import java.io.IOException;
 import java.time.*;
@@ -39,7 +36,7 @@ public class AddAppointmentScreen {
     private TextField locationTextField;
 
     @FXML
-    private ComboBox<TableItem> contactComboBox;
+    private ComboBox<Contact> contactComboBox;
 
     @FXML
     private TextField typeTextField;
@@ -69,10 +66,10 @@ public class AddAppointmentScreen {
     private ChoiceBox<MeridiemIndicator> endTimeMeridiemChoiceBox;
 
     @FXML
-    private ComboBox<TableItem> customerComboBox;
+    private ComboBox<Customer> customerComboBox;
 
     @FXML
-    private ComboBox<TableItem> userComboBox;
+    private ComboBox<User> userComboBox;
 
     @FXML
     private Button addAppointmentButton;

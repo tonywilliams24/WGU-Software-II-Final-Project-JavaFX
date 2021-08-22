@@ -133,6 +133,11 @@ public class Appointment extends TableItem {
     }
 
     @Override
+    public String getIdString() {
+        return Integer.toString(Appointment_ID);
+    }
+
+    @Override
     public String getName() {
         return Title;
     }

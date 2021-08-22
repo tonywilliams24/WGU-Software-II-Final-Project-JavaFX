@@ -48,6 +48,11 @@ public class Country extends TableItem {
     }
 
     @Override
+    public String getIdString() {
+        return Integer.toString(Country_ID);
+    }
+
+    @Override
     public String getName() {
         return Country;
     }

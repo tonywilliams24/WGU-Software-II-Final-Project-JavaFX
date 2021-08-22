@@ -5,8 +5,8 @@ import javafx.collections.ObservableList;
 
 import java.util.NoSuchElementException;
 
-public class TableList {
-    private ObservableList<TableItem> list;
+public class TableList<T extends TableItem> {
+    private ObservableList<T> list;
     private int length = 0;
     private int cumulativeLength = 0;
 
@@ -14,43 +14,43 @@ public class TableList {
         this.list = FXCollections.observableArrayList();
     }
 
-    public void add(TableItem item) {
-        list.add(item);
+    public void add(T tableItem) {
+        list.add(tableItem);
         length++;
         cumulativeLength++;
     }
 
-    public void addAll(TableItem[] items) {
-        for(TableItem tableItem: items) {
+    public void addAll(T[] tableItems) {
+        for(T tableItem: tableItems) {
             add(tableItem);
         }
     }
 
-    public TableItem lookup(int id) {
-        for(TableItem tableItem: list) {
+    public T lookup(int id) {
+        for(T tableItem: list) {
             if(tableItem.getId() == id) return tableItem;
         }
         throw new NoSuchElementException();
     }
 
-    public TableItem lookup(String name) {
-        for(TableItem tableItem: list) {
+    public T lookup(String name) {
+        for(T tableItem: list) {
             if(tableItem.getName().equals(name)) return tableItem;
         }
         throw new NoSuchElementException();
     }
 
-    public void update(TableItem updateItem) {
-        if(list.contains(updateItem)) {
-            list.remove(updateItem);
-            list.add(updateItem);
+    public void update(T tableItem) {
+        if(list.contains(tableItem)) {
+            list.remove(tableItem);
+            list.add(tableItem);
         }
         else throw new NoSuchElementException();
     }
 
-    public void delete(TableItem updateItem) {
-        if(list.contains(updateItem)) {
-            list.remove(updateItem);
+    public void delete(T tableItem) {
+        if(list.contains(tableItem)) {
+            list.remove(tableItem);
             length--;
         }
         else throw new NoSuchElementException();
@@ -65,7 +65,7 @@ public class TableList {
         return cumulativeLength;
     }
 
-    public ObservableList<TableItem> getList() {
+    public ObservableList<T> getList() {
         return list;
     }
 

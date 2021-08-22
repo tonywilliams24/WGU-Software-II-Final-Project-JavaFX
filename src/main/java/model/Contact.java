@@ -44,6 +44,11 @@ public class Contact extends TableItem {
     }
 
     @Override
+    public String getIdString() {
+        return Integer.toString(Contact_ID);
+    }
+
+    @Override
     public String getName() {
         return Contact_Name;
     }

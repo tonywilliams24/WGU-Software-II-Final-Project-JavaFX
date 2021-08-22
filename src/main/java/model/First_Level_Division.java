@@ -56,6 +56,11 @@ public class First_Level_Division extends TableItem {
     }
 
     @Override
+    public String getIdString() {
+        return Integer.toString(Division_ID);
+    }
+
+    @Override
     public String getName() {
         return Division;
     }
