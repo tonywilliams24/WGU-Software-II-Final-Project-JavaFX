@@ -18,7 +18,7 @@ import static model.Inventory.appointmentList;
 import static model.MeridiemIndicator.AM;
 import static model.MeridiemIndicator.PM;
 
-public class AddAppointmentScreen {
+public class AddAppointmentScreen extends AddScreen {
     DateTime startDateTIme;
     DateTime endDateTIme;
 

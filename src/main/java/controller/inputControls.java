@@ -87,15 +87,4 @@ public class inputControls {
         box.setItems(integers);
     }
 
-    public static void extractCustomerData(CustomerForm customerForm) {
-        String Customer_Name = customerForm.getNameTextField().getText().trim();
-        String Address = customerForm.getAddressTextField().getText().trim();
-        String Postal_Code = customerForm.getPostalCodeTextField().getText().trim();
-        String Phone = customerForm.getPhoneNumberTextField().getText().trim();
-        int Division_ID = customerForm.getFirstLevelDivisionComboBox().getItems().get(0).getId();
-        String Country = customerForm.getCountryComboBox().getItems().get(0).getName();
-        addToCustomerList(customerForm.getCustomer_ID(), Customer_Name, Address, Postal_Code, Phone, Division_ID, Country);
-        customerForm.clearForm();
-    }
-
 }

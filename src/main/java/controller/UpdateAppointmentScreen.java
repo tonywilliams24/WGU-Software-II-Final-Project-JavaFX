@@ -12,10 +12,11 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import model.Appointment;
 
 import java.io.IOException;
 
-public class UpdateAppointmentScreen {
+public class UpdateAppointmentScreen extends UpdateScreen<Appointment> {
 
     @FXML
     private AnchorPane anchorPane;

@@ -6,8 +6,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import model.Appointment;
+import model.Customer;
+import model.TableItem;
 
 import java.io.IOException;
+import java.io.InvalidObjectException;
 import java.net.URL;
 
 public class ScreenControls {
@@ -26,9 +30,41 @@ public class ScreenControls {
     private final ActionEvent switchScreensEvent;
     private Stage currentStage;
     private Scene destinationScene;
+    private TableItem tableItem = null;
+
+    public void setDestinationFxmlUrlString(String destinationFxmlUrlString) {
+        this.destinationFxmlUrlString = destinationFxmlUrlString;
+    }
 
     public ScreenControls(ActionEvent switchScreensEvent) {
         this.switchScreensEvent = switchScreensEvent;
+    }
+
+    public ScreenControls(ActionEvent switchScreensEvent, TableItem tableItem) throws IOException {
+        this.switchScreensEvent = switchScreensEvent;
+        this.tableItem = tableItem;
+    }
+
+    private void sendtableItem() throws IOException {
+        assert tableItem != null;
+        if(tableItem instanceof Appointment) {
+            destinationFxmlUrlString = UPDATE_APPOINTMENT_SCREEN_URL;
+            loadDestinationScreenFXML();
+            UpdateAppointmentScreen updateAppointmentScreen = destinationFxmlLoader.getController();
+            updateAppointmentScreen.sendSelectedItem((Appointment) tableItem);
+        }
+        else if (tableItem instanceof Customer) {
+            destinationFxmlUrlString = UPDATE_CUSTOMER_SCREEN_URL;
+            loadDestinationScreenFXML();
+            UpdateCustomerScreen updateCustomerScreen = destinationFxmlLoader.getController();
+            updateCustomerScreen.sendSelectedItem((Customer) tableItem);
+        }
+        else throw new InvalidObjectException("Invalid Table Item Type");
+    }
+
+    private void sendtableItem(TableItem tableItem) throws IOException {
+        this.tableItem = tableItem;
+        sendtableItem();;
     }
 
     public ScreenControls(ActionEvent switchScreensEvent, String destinationFxmlUrlString) {
@@ -36,30 +72,25 @@ public class ScreenControls {
         this.destinationFxmlUrlString = destinationFxmlUrlString;
     }
 
-    public void switchScreens() throws IOException {
-        loadDestinationScreenFXML();
-        currentStage = getCurrentStage();
-        destinationScene = setDestinationScene();
-        applySceneToStage(currentStage, destinationScene);
-    }
-
     public void switchScreens(String destinationFxmlUrlString) throws IOException {
-        this.destinationFxmlUrlString = destinationFxmlUrlString;
+        setDestinationFxmlUrlString(destinationFxmlUrlString);
         loadDestinationScreenFXML();
-        currentStage = getCurrentStage();
-        destinationScene = setDestinationScene();
-        applySceneToStage(currentStage, destinationScene);
+        switchScreens();
     }
 
+    public void switchScreens() throws IOException {
+        currentStage = getCurrentStage();
+        destinationScene = setDestinationScene();
+        applySceneToStage();
+    }
 
-    private FXMLLoader loadDestinationScreenFXML() throws IOException {
+    private void loadDestinationScreenFXML() throws IOException {
         destinationFxmlLoader = new FXMLLoader();
         destinationFxmlLoader.setLocation(new URL(destinationFxmlUrlString));
         destinationFxmlLoader.load();
-        return destinationFxmlLoader;
     }
 
-    private Stage getCurrentStage() {
+    private Stage getCurrentStage() { ///// refactor current stage and destination scene to be void instead of returning.
         Button selectedButton = ((Button) switchScreensEvent.getSource());
         Scene currentScene = selectedButton.getScene();
         return (Stage) currentScene.getWindow();
@@ -72,7 +103,7 @@ public class ScreenControls {
         return destinationScene;
     }
 
-    private void applySceneToStage(Stage currentStage, Scene destinationScene) {
+    private void applySceneToStage() {
         currentStage.setScene(destinationScene);
         currentStage.show();
     }

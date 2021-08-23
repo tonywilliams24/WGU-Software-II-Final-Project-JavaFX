@@ -16,49 +16,37 @@ public class Customer extends TableItem {
     private String Country;
 
     public Customer(int customer_ID, String customer_Name, String address, String postal_Code, String phone, DateTime create_Date, String created_By, DateTime last_Update, String last_Updated_By, int division_ID, String country) {
-        Customer_ID = customer_ID;
-        Customer_Name = customer_Name;
-        Address = address;
-        Postal_Code = postal_Code;
-        Phone = phone;
-        Create_Date = create_Date;
-        Created_By = created_By;
-        Last_Update = last_Update;
-        Last_Updated_By = last_Updated_By;
-        Division_ID = division_ID;
-        Country = country;
+        this.Customer_ID = customer_ID;
+        this.Customer_Name = customer_Name;
+        this.Address = address;
+        this.Postal_Code = postal_Code;
+        this.Phone = phone;
+        this.Create_Date = create_Date;
+        this.Created_By = created_By;
+        this.Last_Update = last_Update;
+        this.Last_Updated_By = last_Updated_By;
+        this.Division_ID = division_ID;
+        this.Country = country;
     }
     public Customer(int customer_ID, String customer_Name, String address, String postal_Code, String phone, int division_ID, String country) {
         super();
-        Customer_ID = customer_ID;
-        Customer_Name = customer_Name;
-        Address = address;
-        Postal_Code = postal_Code;
-        Phone = phone;
-        Division_ID = division_ID;
-        Country = country;
+        this.Customer_ID = customer_ID;
+        this.Customer_Name = customer_Name;
+        this.Address = address;
+        this.Postal_Code = postal_Code;
+        this.Phone = phone;
+        this.Division_ID = division_ID;
+        this.Country = country;
     }
     public Customer(CustomerForm customerForm) {
         super();
-        int Customer_ID = customerForm.getCustomer_ID();
-        String Customer_Name = customerForm.getNameTextField().getText().trim();
-        String Address = customerForm.getAddressTextField().getText().trim();
-        String Postal_Code = customerForm.getPostalCodeTextField().getText().trim();
-        String Phone = customerForm.getPhoneNumberTextField().getText().trim();
-        int Division_ID = customerForm.getFirstLevelDivisionComboBox().getItems().get(0).getId();
-        String Country = customerForm.getCountryComboBox().getItems().get(0).getName();
-    }
-
-    public static void addToCustomerList(int customer_ID, String Customer_Name, String Address, String Postal_Code, String Phone, int Division_ID, String Country) {
-        customerList.add(new Customer(customer_ID, Customer_Name, Address, Postal_Code, Phone, Division_ID, Country));
-    }
-
-    public static void addToCustomerList(Customer customer) {
-        customerList.add(customer);
-    }
-
-    public static void addToCustomerList(CustomerForm customerForm) {
-        customerList.add(new Customer(customerForm));
+        this.Customer_ID = customerForm.getCustomer_ID();
+        this.Customer_Name = customerForm.getNameTextField().getText().trim();
+        this.Address = customerForm.getAddressTextField().getText().trim();
+        this.Postal_Code = customerForm.getPostalCodeTextField().getText().trim();
+        this.Phone = customerForm.getPhoneNumberTextField().getText().trim();
+        this.Division_ID = customerForm.getFirstLevelDivisionComboBox().getItems().get(0).getId();
+        this.Country = customerForm.getCountryComboBox().getItems().get(0).getName();
     }
 
     public Customer() {

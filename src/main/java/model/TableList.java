@@ -3,19 +3,17 @@ package model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.util.LinkedHashSet;
 import java.util.NoSuchElementException;
 
 public class TableList<T extends TableItem> {
-    private ObservableList<T> list;
+    private final ObservableList<T> list = FXCollections.observableArrayList();
+    private final LinkedHashSet<T> linkedHashSet = new LinkedHashSet<>();
     private int length = 0;
     private int cumulativeLength = 0;
 
-    TableList() {
-        this.list = FXCollections.observableArrayList();
-    }
-
     public void add(T tableItem) {
-        list.add(tableItem);
+        linkedHashSet.add(tableItem);
         length++;
         cumulativeLength++;
     }
@@ -26,31 +24,35 @@ public class TableList<T extends TableItem> {
         }
     }
 
+    public boolean contains(T t) {
+        return linkedHashSet.contains(t);
+    }
+
     public T lookup(int id) {
-        for(T tableItem: list) {
+        for(T tableItem: linkedHashSet) {
             if(tableItem.getId() == id) return tableItem;
         }
         throw new NoSuchElementException();
     }
 
     public T lookup(String name) {
-        for(T tableItem: list) {
+        for(T tableItem: linkedHashSet) {
             if(tableItem.getName().equals(name)) return tableItem;
         }
         throw new NoSuchElementException();
     }
 
     public void update(T tableItem) {
-        if(list.contains(tableItem)) {
-            list.remove(tableItem);
-            list.add(tableItem);
+        if(linkedHashSet.contains(tableItem)) {
+            linkedHashSet.remove(tableItem);
+            linkedHashSet.add(tableItem);
         }
         else throw new NoSuchElementException();
     }
 
-    public void delete(T tableItem) {
-        if(list.contains(tableItem)) {
-            list.remove(tableItem);
+    public void remove(T tableItem) {
+        if(linkedHashSet.contains(tableItem)) {
+            linkedHashSet.remove(tableItem);
             length--;
         }
         else throw new NoSuchElementException();
@@ -66,6 +68,7 @@ public class TableList<T extends TableItem> {
     }
 
     public ObservableList<T> getList() {
+        list.setAll(linkedHashSet);
         return list;
     }
 

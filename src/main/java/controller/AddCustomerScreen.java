@@ -15,7 +15,7 @@ import static controller.inputControls.setCountryComboBox;
 import static controller.inputControls.setFirstLevelDivisionComboBox;
 import static model.Inventory.customerList;
 
-public class AddCustomerScreen {
+public class AddCustomerScreen extends AddScreen {
 
     @FXML
     private AnchorPane anchorPane;
@@ -46,6 +46,7 @@ public class AddCustomerScreen {
 
     @FXML
     private Button goBackButton;
+    private CustomerForm customerForm;
 
     @FXML
     public void initialize() {
@@ -56,7 +57,8 @@ public class AddCustomerScreen {
     @FXML
     void addCustomerButtonSelectedHandler(ActionEvent event) {
         int Customer_ID = customerList.getCumulativeLength()+1;
-        inputControls.extractCustomerData(new CustomerForm(Customer_ID, nameTextField, addressTextField, postalCodeTextField, phoneNumberTextField, firstLevelDivisionComboBox, countryComboBox));
+        customerForm = new CustomerForm(Customer_ID, nameTextField, addressTextField, postalCodeTextField, phoneNumberTextField, firstLevelDivisionComboBox, countryComboBox);
+        customerForm.submitAddCustomer();
     }
 
     @FXML

@@ -12,9 +12,13 @@ import model.First_Level_Division;
 
 import java.io.IOException;
 
+import static controller.inputControls.setCountryComboBox;
+import static controller.inputControls.setFirstLevelDivisionComboBox;
 import static model.Inventory.*;
 
-public class UpdateCustomerScreen {
+public class UpdateCustomerScreen extends UpdateScreen<Customer> {
+    
+    CustomerForm customerForm;
 
     @FXML
     private AnchorPane anchorPane;
@@ -49,13 +53,17 @@ public class UpdateCustomerScreen {
     @FXML
     private Button goBackButton;
 
-    public void sendSelectedCustomerToScreen(Customer customer){
-        idTextField.setText(customer.getIdString());
-        nameTextField.setText(customer.getCustomer_Name());
-        addressTextField.setText(customer.getAddress());
-        postalCodeTextField.setText(customer.getPostal_Code());
-        firstLevelDivisionComboBox.getSelectionModel().select(first_level_divisionList.lookup(customer.getDivision_ID()));
-        countryComboBox.getSelectionModel().select(countryList.lookup(customer.getCountry()));
+    @FXML
+    public void initialize() {
+        this.idTextField.setText(t.getIdString());
+        this.nameTextField.setText(t.getCustomer_Name());
+        this.addressTextField.setText(t.getAddress());
+        this.postalCodeTextField.setText(t.getPostal_Code());
+        this.firstLevelDivisionComboBox.getSelectionModel().select(first_level_divisionList.lookup(t.getDivision_ID()));
+        this.countryComboBox.getSelectionModel().select(countryList.lookup(t.getCountry()));
+        setFirstLevelDivisionComboBox(firstLevelDivisionComboBox);
+        setCountryComboBox(countryComboBox);
+        customerForm = new CustomerForm(tId,nameTextField,addressTextField,postalCodeTextField,phoneNumberTextField,firstLevelDivisionComboBox,countryComboBox);
     }
 
 
@@ -67,7 +75,8 @@ public class UpdateCustomerScreen {
     @FXML
     void updateCustomerButtonHandler(ActionEvent event) {
         int Customer_ID = Integer.parseInt(idTextField.getText());
-        inputControls.extractCustomerData(new CustomerForm(Customer_ID, nameTextField, addressTextField, postalCodeTextField, phoneNumberTextField, firstLevelDivisionComboBox, countryComboBox));
+        CustomerForm customerForm = new CustomerForm(Customer_ID, nameTextField, addressTextField, postalCodeTextField, phoneNumberTextField, firstLevelDivisionComboBox, countryComboBox);
+        customerForm.submitAddCustomer();
 
     }
 

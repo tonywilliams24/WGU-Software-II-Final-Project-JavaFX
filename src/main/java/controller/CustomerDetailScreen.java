@@ -10,10 +10,12 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import model.Appointment;
+import model.Country;
 import model.Customer;
 import model.TableItem;
 
 import java.io.IOException;
+import java.util.concurrent.CyclicBarrier;
 
 import static model.Inventory.appointmentList;
 import static model.Inventory.customerList;
@@ -146,7 +148,8 @@ public class CustomerDetailScreen {
 
     @FXML
     void updateCustomerButtonSelectedHandler(ActionEvent updateCustomerButtonSelected) throws IOException {
-        ScreenControls screenControls = new ScreenControls(updateCustomerButtonSelected);
+        Customer selectedCustomer = customerTable.getSelectionModel().getSelectedItem();
+        ScreenControls screenControls = new ScreenControls(updateCustomerButtonSelected, selectedCustomer);
         screenControls.switchScreens(ScreenControls.UPDATE_CUSTOMER_SCREEN_URL);
 
     }
