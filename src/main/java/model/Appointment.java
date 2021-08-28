@@ -1,6 +1,27 @@
 package model;
 
+import controller.AppointmentForm;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.OffsetDateTime;
+
+import static controller.inputControls.SYSTEM_ZONE_OFFSET;
+import static model.Inventory.appointmentList;
+import static model.MeridiemIndicator.AM;
+import static model.MeridiemIndicator.PM;
+
 public class Appointment extends TableItem {
+    private int startTimeHour;
+    private Integer startTimeMinute;
+    private LocalTime startTime;
+    private MeridiemIndicator startMeridiem;
+    private LocalDate startDate;
+    private int endTimeHour;
+    private Integer endTimeMinute;
+    private LocalTime endTime;
+    private MeridiemIndicator endMeridiem;
+    private LocalDate endDate;
     private int Appointment_ID;
     private String Title;
     private String Description;
@@ -46,6 +67,33 @@ public class Appointment extends TableItem {
         User_ID = user_ID;
         Contact_ID = contact_ID;
     }
+    
+    public Appointment(AppointmentForm appointmentForm) {
+        Appointment_ID = appointmentForm.getAppointment_ID();
+        Title = appointmentForm.getTitleTextField().getText().trim();
+        Description = appointmentForm.getDescriptionTextField().getText().trim();
+        Location = appointmentForm.getLocationTextField().getText().trim();
+        Type = appointmentForm.getTypeTextField().getText().trim();
+        Customer_ID = appointmentForm.getCustomerComboBox().getItems().get(0).getId();
+        User_ID = appointmentForm.getUserComboBox().getItems().get(0).getId();
+        Contact_ID = appointmentForm.getContactComboBox().getItems().get(0).getId();
+        startDate = appointmentForm.getStartDatePicker().getValue();
+        startTimeHour = appointmentForm.getStartTimeHourComboBox().getItems().get(0);
+        startTimeMinute = appointmentForm.getStartTimeMinuteComboBox().getItems().get(0);
+        startTime = LocalTime.of(startTimeHour,startTimeMinute);
+        startMeridiem = appointmentForm.getStartTimeMeridiemChoiceBox().getItems().get(0);
+        if(startMeridiem.equals(PM) && startTimeHour<12) startTimeHour+=12;
+        else if(startMeridiem.equals(AM) && startTimeHour==12) startTimeHour-=12;
+        Start = new DateTime(OffsetDateTime.of(startDate,startTime, SYSTEM_ZONE_OFFSET));
+        endDate = appointmentForm.getEndDatePicker().getValue();
+        endTimeHour = appointmentForm.getEndTimeHourComboBox().getItems().get(0);
+        endTimeMinute = appointmentForm.getEndTimeMinuteComboBox().getItems().get(0);
+        endTime = LocalTime.of(endTimeHour,endTimeMinute);
+        endMeridiem = appointmentForm.getEndTimeMeridiemChoiceBox().getItems().get(0);
+        if(endMeridiem.equals(PM) && startTimeHour<12) startTimeHour+=12;
+        else if(endMeridiem.equals(AM) && startTimeHour==12) startTimeHour-=12;
+        End = new DateTime(OffsetDateTime.of(endDate,endTime, SYSTEM_ZONE_OFFSET));
+   }
 
     public int getAppointment_ID() {
         return Appointment_ID;
@@ -125,6 +173,86 @@ public class Appointment extends TableItem {
 
     public void setContact_ID(int contact_ID) {
         Contact_ID = contact_ID;
+    }
+
+    public int getStartTimeHour() {
+        return startTimeHour;
+    }
+
+    public void setStartTimeHour(int startTimeHour) {
+        this.startTimeHour = startTimeHour;
+    }
+
+    public Integer getStartTimeMinute() {
+        return startTimeMinute;
+    }
+
+    public void setStartTimeMinute(Integer startTimeMinute) {
+        this.startTimeMinute = startTimeMinute;
+    }
+
+    public LocalTime getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(LocalTime startTime) {
+        this.startTime = startTime;
+    }
+
+    public MeridiemIndicator getStartMeridiem() {
+        return startMeridiem;
+    }
+
+    public void setStartMeridiem(MeridiemIndicator startMeridiem) {
+        this.startMeridiem = startMeridiem;
+    }
+
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public int getEndTimeHour() {
+        return endTimeHour;
+    }
+
+    public void setEndTimeHour(int endTimeHour) {
+        this.endTimeHour = endTimeHour;
+    }
+
+    public Integer getEndTimeMinute() {
+        return endTimeMinute;
+    }
+
+    public void setEndTimeMinute(Integer endTimeMinute) {
+        this.endTimeMinute = endTimeMinute;
+    }
+
+    public LocalTime getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(LocalTime endTime) {
+        this.endTime = endTime;
+    }
+
+    public MeridiemIndicator getEndMeridiem() {
+        return endMeridiem;
+    }
+
+    public void setEndMeridiem(MeridiemIndicator endMeridiem) {
+        this.endMeridiem = endMeridiem;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
     }
 
     @Override

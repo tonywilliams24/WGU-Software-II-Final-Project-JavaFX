@@ -15,7 +15,7 @@ import static controller.inputControls.setCountryComboBox;
 import static controller.inputControls.setFirstLevelDivisionComboBox;
 import static model.Inventory.customerList;
 
-public class AddCustomerScreen extends AddScreen {
+public class CustomerAddScreen {
 
     @FXML
     private AnchorPane anchorPane;

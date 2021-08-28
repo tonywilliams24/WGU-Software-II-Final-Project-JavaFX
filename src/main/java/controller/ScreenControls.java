@@ -40,7 +40,7 @@ public class ScreenControls {
         this.switchScreensEvent = switchScreensEvent;
     }
 
-    public ScreenControls(ActionEvent switchScreensEvent, TableItem tableItem) throws IOException {
+    public ScreenControls(ActionEvent switchScreensEvent, TableItem tableItem) {
         this.switchScreensEvent = switchScreensEvent;
         this.tableItem = tableItem;
     }
@@ -50,14 +50,14 @@ public class ScreenControls {
         if(tableItem instanceof Appointment) {
             destinationFxmlUrlString = UPDATE_APPOINTMENT_SCREEN_URL;
             loadDestinationScreenFXML();
-            UpdateAppointmentScreen updateAppointmentScreen = destinationFxmlLoader.getController();
-            updateAppointmentScreen.sendSelectedItem((Appointment) tableItem);
+            AppointmentUpdateScreen appointmentUpdateScreen = destinationFxmlLoader.getController();
+            appointmentUpdateScreen.sendAppointment((Appointment) tableItem);
         }
-        else if (tableItem instanceof Customer) {
+        if (tableItem instanceof Customer) {
             destinationFxmlUrlString = UPDATE_CUSTOMER_SCREEN_URL;
             loadDestinationScreenFXML();
-            UpdateCustomerScreen updateCustomerScreen = destinationFxmlLoader.getController();
-            updateCustomerScreen.sendSelectedItem((Customer) tableItem);
+            CustomerUpdateScreen customerUpdateScreen = destinationFxmlLoader.getController();
+            customerUpdateScreen.sendCustomer((Customer) tableItem);
         }
         else throw new InvalidObjectException("Invalid Table Item Type");
     }
@@ -80,6 +80,8 @@ public class ScreenControls {
 
     public void switchScreens() throws IOException {
         currentStage = getCurrentStage();
+        System.out.println(tableItem);
+        if(tableItem!=null) sendtableItem();
         destinationScene = setDestinationScene();
         applySceneToStage();
     }

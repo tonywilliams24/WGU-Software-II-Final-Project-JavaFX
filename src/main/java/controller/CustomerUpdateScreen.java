@@ -16,9 +16,10 @@ import static controller.inputControls.setCountryComboBox;
 import static controller.inputControls.setFirstLevelDivisionComboBox;
 import static model.Inventory.*;
 
-public class UpdateCustomerScreen extends UpdateScreen<Customer> {
+public class CustomerUpdateScreen {
     
     CustomerForm customerForm;
+    Customer customer;
 
     @FXML
     private AnchorPane anchorPane;
@@ -55,15 +56,7 @@ public class UpdateCustomerScreen extends UpdateScreen<Customer> {
 
     @FXML
     public void initialize() {
-        this.idTextField.setText(t.getIdString());
-        this.nameTextField.setText(t.getCustomer_Name());
-        this.addressTextField.setText(t.getAddress());
-        this.postalCodeTextField.setText(t.getPostal_Code());
-        this.firstLevelDivisionComboBox.getSelectionModel().select(first_level_divisionList.lookup(t.getDivision_ID()));
-        this.countryComboBox.getSelectionModel().select(countryList.lookup(t.getCountry()));
-        setFirstLevelDivisionComboBox(firstLevelDivisionComboBox);
-        setCountryComboBox(countryComboBox);
-        customerForm = new CustomerForm(tId,nameTextField,addressTextField,postalCodeTextField,phoneNumberTextField,firstLevelDivisionComboBox,countryComboBox);
+
     }
 
 
@@ -77,13 +70,26 @@ public class UpdateCustomerScreen extends UpdateScreen<Customer> {
         int Customer_ID = Integer.parseInt(idTextField.getText());
         CustomerForm customerForm = new CustomerForm(Customer_ID, nameTextField, addressTextField, postalCodeTextField, phoneNumberTextField, firstLevelDivisionComboBox, countryComboBox);
         customerForm.submitAddCustomer();
-
     }
 
     @FXML
     void goBackButtonHandler(ActionEvent goBackButtonSelected) throws IOException {
         ScreenControls screenControls = new ScreenControls(goBackButtonSelected);
         screenControls.switchScreens(ScreenControls.CUSTOMER_DETAIL_SCREEN_URL);
+    }
+
+    public void sendCustomer(Customer customer) {
+        this.customer = customer;
+        this.idTextField.setText(customer.getIdString());
+        this.nameTextField.setText(customer.getCustomer_Name());
+        this.addressTextField.setText(customer.getAddress());
+        this.postalCodeTextField.setText(customer.getPostal_Code());
+        this.phoneNumberTextField.setText(customer.getPhone());
+        this.firstLevelDivisionComboBox.getSelectionModel().select(first_level_divisionList.lookup(customer.getDivision_ID()));
+        this.countryComboBox.getSelectionModel().select(countryList.lookup(customer.getCountry()));
+        setFirstLevelDivisionComboBox(firstLevelDivisionComboBox);
+        setCountryComboBox(countryComboBox);
+        customerForm = new CustomerForm(customer.getCustomer_ID(),nameTextField,addressTextField,postalCodeTextField,phoneNumberTextField,firstLevelDivisionComboBox,countryComboBox);
     }
 
 }

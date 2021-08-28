@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import model.Appointment;
 import model.Contact;
@@ -20,7 +21,6 @@ import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.zone.ZoneRules;
 
-import static model.Customer.addToCustomerList;
 import static model.Inventory.*;
 
 public class inputControls {
@@ -34,6 +34,18 @@ public class inputControls {
 
     public static void clearComboBoxes(ComboBox<?>... comboBoxes) {
         for(ComboBox<?> c: comboBoxes) {
+            c.valueProperty().set(null);
+        }
+    }
+
+    public static void clearDatePicker(DatePicker... datePickers) {
+        for(DatePicker d: datePickers) {
+            d.valueProperty().set(null);
+        }
+    }
+
+    public static void clearChoiceBoxes(ChoiceBox<?>... choiceBoxes) {
+        for(ChoiceBox<?> c: choiceBoxes) {
             c.valueProperty().set(null);
         }
     }
