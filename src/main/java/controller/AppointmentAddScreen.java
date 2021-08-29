@@ -85,15 +85,7 @@ public class AppointmentAddScreen {
 
     @FXML
     public void initialize(){
-        setContactComboBox(contactComboBox);
-        setHourComboBox(startTimeHourComboBox);
-        setMinuteComboBox(startTimeMinuteComboBox);
-        setMeridiemChoiceBox(startTimeMeridiemChoiceBox);
-        setHourComboBox(endTimeHourComboBox);
-        setMinuteComboBox(endTimeMinuteComboBox);
-        setMeridiemChoiceBox(endTimeMeridiemChoiceBox);
-        setCustomerComboBox(customerComboBox);
-        setUserComboBox(userComboBox);
+        AppointmentForm.initializeAppointmentForm(contactComboBox, startTimeHourComboBox, startTimeMinuteComboBox, startTimeMeridiemChoiceBox, endTimeHourComboBox, endTimeMinuteComboBox, endTimeMeridiemChoiceBox, customerComboBox, userComboBox);
     }
 
     @FXML

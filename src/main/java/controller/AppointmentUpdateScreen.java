@@ -2,16 +2,12 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 import model.Appointment;
 import model.Contact;
 import model.Customer;
@@ -20,8 +16,6 @@ import model.User;
 
 import java.io.IOException;
 
-import static controller.inputControls.setCountryComboBox;
-import static controller.inputControls.setFirstLevelDivisionComboBox;
 import static model.Inventory.*;
 
 public class AppointmentUpdateScreen {
@@ -42,6 +36,9 @@ public class AppointmentUpdateScreen {
 
     @FXML
     private TextField locationTextField;
+
+    @FXML
+    private TextField postalCodeTextField;
 
     @FXML
     private ComboBox<Contact> contactComboBox;
@@ -92,6 +89,11 @@ public class AppointmentUpdateScreen {
     private Button customerDetailScreenButton;
 
     @FXML
+    public void initialize(){
+        AppointmentForm.initializeAppointmentForm(contactComboBox, startTimeHourComboBox, startTimeMinuteComboBox, startTimeMeridiemChoiceBox, endTimeHourComboBox, endTimeMinuteComboBox, endTimeMeridiemChoiceBox, customerComboBox, userComboBox);
+    }
+
+    @FXML
     void clearButtonHandler(ActionEvent event) {
 
     }
@@ -115,10 +117,12 @@ public class AppointmentUpdateScreen {
 
     public void sendAppointment(Appointment appointment) {
         this.appointment = appointment;
+        System.out.println(appointment);
         this.appointmentIdTextField.setText(String.valueOf(appointment.getAppointment_ID()));
         this.titleTextField.setText(appointment.getTitle());
         this.descriptionTextField.setText(appointment.getDescription());
         this.locationTextField.setText(appointment.getLocation());
+        this.postalCodeTextField.setText(appointment.getLocation());
         this.contactComboBox.getSelectionModel().select(contactList.lookup(appointment.getContact_ID()));
         this.typeTextField.setText(appointment.getType());
         this.startDatePicker.setValue(appointment.getStartDate());

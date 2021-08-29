@@ -18,7 +18,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.OffsetDateTime;
 
-import static controller.inputControls.SYSTEM_ZONE_OFFSET;
+import static controller.inputControls.*;
 import static model.Inventory.appointmentList;
 import static model.Inventory.customerList;
 import static model.MeridiemIndicator.AM;
@@ -62,6 +62,18 @@ public class AppointmentForm {
         this.customerComboBox = customerComboBox;
         this.userComboBox = userComboBox;
         appointment = new Appointment(this);
+    }
+
+    public static void initializeAppointmentForm(ComboBox<Contact> contactComboBox, ComboBox<Integer> startTimeHourComboBox, ComboBox<Integer> startTimeMinuteComboBox, ChoiceBox<MeridiemIndicator> startTimeMeridiemChoiceBox, ComboBox<Integer> endTimeHourComboBox, ComboBox<Integer> endTimeMinuteComboBox, ChoiceBox<MeridiemIndicator> endTimeMeridiemChoiceBox, ComboBox<Customer> customerComboBox, ComboBox<User> userComboBox) {
+        setContactComboBox(contactComboBox);
+        setHourComboBox(startTimeHourComboBox);
+        setMinuteComboBox(startTimeMinuteComboBox);
+        setMeridiemChoiceBox(startTimeMeridiemChoiceBox);
+        setHourComboBox(endTimeHourComboBox);
+        setMinuteComboBox(endTimeMinuteComboBox);
+        setMeridiemChoiceBox(endTimeMeridiemChoiceBox);
+        setCustomerComboBox(customerComboBox);
+        setUserComboBox(userComboBox);
     }
 
     public TextField getTitleTextField() {

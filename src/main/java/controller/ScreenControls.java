@@ -47,13 +47,14 @@ public class ScreenControls {
 
     private void sendtableItem() throws IOException {
         assert tableItem != null;
+        System.out.println(tableItem.getClass());
         if(tableItem instanceof Appointment) {
             destinationFxmlUrlString = UPDATE_APPOINTMENT_SCREEN_URL;
             loadDestinationScreenFXML();
             AppointmentUpdateScreen appointmentUpdateScreen = destinationFxmlLoader.getController();
             appointmentUpdateScreen.sendAppointment((Appointment) tableItem);
         }
-        if (tableItem instanceof Customer) {
+        else if (tableItem instanceof Customer) {
             destinationFxmlUrlString = UPDATE_CUSTOMER_SCREEN_URL;
             loadDestinationScreenFXML();
             CustomerUpdateScreen customerUpdateScreen = destinationFxmlLoader.getController();

@@ -6,12 +6,32 @@ import java.time.format.FormatStyle;
 
 public class DateTime {
 
-    private final OffsetDateTime dateTime;
+    private final OffsetDateTime offsetDateTime;
+    private final LocalDateTime localDateTime;
     private Instant instant;
     private ZoneId zoneId;
 
-    public OffsetDateTime getDateTime() {
-        return dateTime;
+    public DateTime(OffsetDateTime offsetDateTime){
+        this.zoneId = ZoneId.systemDefault();
+        this.instant = offsetDateTime.toInstant();
+        this.offsetDateTime = OffsetDateTime.ofInstant(instant,this.zoneId);
+        this.localDateTime = LocalDateTime.ofInstant(instant,this.zoneId);
+    }
+
+    public DateTime(Instant instant){
+        this.zoneId = ZoneId.systemDefault();
+        this.instant = instant;
+        this.offsetDateTime = OffsetDateTime.ofInstant(instant,this.zoneId);
+        this.localDateTime = LocalDateTime.ofInstant(instant,this.zoneId);
+
+    }
+
+    public OffsetDateTime getOffsetDateTime() {
+        return offsetDateTime;
+    }
+
+    public LocalDateTime getLocalDateTime() {
+        return localDateTime;
     }
 
     public Instant getInstant() {
@@ -20,19 +40,6 @@ public class DateTime {
 
     public ZoneId getZoneId() {
         return zoneId;
-    }
-
-    public DateTime(OffsetDateTime offsetDateTime){
-        this.zoneId = ZoneId.systemDefault();
-        this.dateTime = OffsetDateTime.ofInstant(offsetDateTime.toInstant(),this.zoneId);
-        this.instant = offsetDateTime.toInstant();
-    }
-
-    public DateTime(Instant instant){
-        this.zoneId = ZoneId.systemDefault();
-        this.instant = instant;
-        this.dateTime = OffsetDateTime.ofInstant(instant,this.zoneId);
-
     }
 
     public static DateTime convertTimeZone(DateTime dateTime) {
@@ -44,6 +51,6 @@ public class DateTime {
 
     @Override
     public String toString() {
-        return DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT).format(dateTime);
+        return DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT).format(offsetDateTime);
     }
 }

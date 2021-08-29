@@ -3,8 +3,10 @@ package model;
 import controller.AppointmentForm;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.OffsetDateTime;
+import java.util.StringJoiner;
 
 import static controller.inputControls.SYSTEM_ZONE_OFFSET;
 import static model.Inventory.appointmentList;
@@ -49,23 +51,26 @@ public class Appointment extends TableItem {
         Customer_ID = customer_ID;
         User_ID = user_ID;
         Contact_ID = contact_ID;
+        LocalDateTime startLocalDateTime = start.getLocalDateTime();
+        LocalDateTime endLocalDateTime = end.getLocalDateTime();
+        startDate = LocalDate.from(startLocalDateTime);
+        startTime = LocalTime.from(startLocalDateTime);
+////        startTimeHour =
+//        startTimeMinute = appointmentForm.getStartTimeMinuteComboBox().getItems().get(0);
+//        startMeridiem = appointmentForm.getStartTimeMeridiemChoiceBox().getItems().get(0);
+        endDate = LocalDate.from(endLocalDateTime);
+        endTime = LocalTime.from(endLocalDateTime);
+//        endTimeHour = appointmentForm.getEndTimeHourComboBox().getItems().get(0);
+//        endTimeMinute = appointmentForm.getEndTimeMinuteComboBox().getItems().get(0);
+//        endMeridiem = appointmentForm.getEndTimeMeridiemChoiceBox().getItems().get(0);
     }
 
     public Appointment(int appointment_ID, String title, String description, String location, String type, DateTime start, DateTime end,  DateTime create_Date, String created_By, DateTime last_Update, String last_Updated_By, int customer_ID, int user_ID, int contact_ID) {
-        Appointment_ID = appointment_ID;
-        Title = title;
-        Description = description;
-        Location = location;
-        Type = type;
-        Start = start;
-        End = end;
+        this(appointment_ID,title,description,location,type,start,end,customer_ID,user_ID,contact_ID);
         Create_Date = create_Date;
         Created_By = created_By;
         Last_Update = last_Update;
         Last_Updated_By = last_Updated_By;
-        Customer_ID = customer_ID;
-        User_ID = user_ID;
-        Contact_ID = contact_ID;
     }
     
     public Appointment(AppointmentForm appointmentForm) {
@@ -271,5 +276,34 @@ public class Appointment extends TableItem {
     }
 
 
-
+    @Override
+    public String toString() {
+        return new StringJoiner("\n", Appointment.class.getSimpleName() + ": \n", "")
+                .add("startTimeHour: " + startTimeHour)
+                .add("startTimeMinute: " + startTimeMinute)
+                .add("startTime: " + startTime)
+                .add("startMeridiem: " + startMeridiem)
+                .add("startDate: " + startDate)
+                .add("endTimeHour: " + endTimeHour)
+                .add("endTimeMinute: " + endTimeMinute)
+                .add("endTime: " + endTime)
+                .add("endMeridiem: " + endMeridiem)
+                .add("endDate: " + endDate)
+                .add("Appointment_ID: " + Appointment_ID)
+                .add("Title: '" + Title + "'")
+                .add("Description: '" + Description + "'")
+                .add("Location: '" + Location + "'")
+                .add("Type: '" + Type + "'")
+                .add("Start: " + Start)
+                .add("End: " + End)
+                .add("Customer_ID: " + Customer_ID)
+                .add("User_ID: " + User_ID)
+                .add("Contact_ID: " + Contact_ID)
+                .add("Id: " + Id)
+                .add("Create_Date: " + Create_Date)
+                .add("Created_By: '" + Created_By + "'")
+                .add("Last_Update: " + Last_Update)
+                .add("Last_Updated_By: '" + Last_Updated_By + "'")
+                .toString();
+    }
 }
