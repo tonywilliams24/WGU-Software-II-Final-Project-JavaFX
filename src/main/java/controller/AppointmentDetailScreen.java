@@ -122,8 +122,9 @@ public class AppointmentDetailScreen {
 
     @FXML
     void updateAppointmentScreenButtonSelectedHandler(ActionEvent updateAppointmentScreenButtonSelected) throws IOException {
-        ScreenControls screenControls = new ScreenControls(updateAppointmentScreenButtonSelected);
-        screenControls.switchScreens(UPDATE_APPOINTMENT_SCREEN_URL);
+        Appointment selectedAppointment = appointmentTable.getSelectionModel().getSelectedItem();
+        ScreenControls screenControls = new ScreenControls(updateAppointmentScreenButtonSelected, selectedAppointment);
+        screenControls.switchScreens(ScreenControls.UPDATE_APPOINTMENT_SCREEN_URL);
     }
 
     @FXML

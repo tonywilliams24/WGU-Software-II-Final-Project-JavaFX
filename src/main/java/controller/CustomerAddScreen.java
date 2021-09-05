@@ -17,6 +17,8 @@ import static model.Inventory.customerList;
 
 public class CustomerAddScreen {
 
+    CustomerForm customerForm;
+
     @FXML
     private AnchorPane anchorPane;
 
@@ -46,13 +48,14 @@ public class CustomerAddScreen {
 
     @FXML
     private Button goBackButton;
-    private CustomerForm customerForm;
 
     @FXML
     public void initialize() {
-        setFirstLevelDivisionComboBox(firstLevelDivisionComboBox);
-        setCountryComboBox(countryComboBox);
+        customerForm = new CustomerForm(customerList.getCumulativeLength(), nameTextField, addressTextField, postalCodeTextField, phoneNumberTextField, firstLevelDivisionComboBox, countryComboBox);
+        customerForm.initializeCustomerScreen();
     }
+
+
 
     @FXML
     void addCustomerButtonSelectedHandler(ActionEvent event) {

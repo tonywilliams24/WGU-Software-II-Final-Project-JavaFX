@@ -15,12 +15,14 @@ import java.time.*;
 
 import static controller.inputControls.*;
 import static model.Inventory.appointmentList;
+import static model.Inventory.customerList;
 import static model.MeridiemIndicator.AM;
 import static model.MeridiemIndicator.PM;
 
 public class AppointmentAddScreen {
     DateTime startDateTIme;
     DateTime endDateTIme;
+    private static AppointmentForm appointmentForm;
 
 
     @FXML
@@ -85,46 +87,20 @@ public class AppointmentAddScreen {
 
     @FXML
     public void initialize(){
-        AppointmentForm.initializeAppointmentForm(contactComboBox, startTimeHourComboBox, startTimeMinuteComboBox, startTimeMeridiemChoiceBox, endTimeHourComboBox, endTimeMinuteComboBox, endTimeMeridiemChoiceBox, customerComboBox, userComboBox);
+        appointmentForm = new AppointmentForm(appointmentList.getCumulativeLength(), titleTextField, descriptionTextField, locationTextField, contactComboBox, typeTextField, startDatePicker, startTimeHourComboBox, startTimeMinuteComboBox, startTimeMeridiemChoiceBox, endDatePicker, endTimeHourComboBox, endTimeMinuteComboBox, endTimeMeridiemChoiceBox, customerComboBox, userComboBox);
+        appointmentForm.initializeAppointmentForm();
     }
 
     @FXML
     void addAppointmentButtonSelectedHandler(ActionEvent event) {
         int Appointment_ID = appointmentList.getCumulativeLength()+1;
-        String Title = titleTextField.getText().trim();
-        String Description = descriptionTextField.getText().trim();
-        String Location = locationTextField.getText().trim();
-        String Type = typeTextField.getText().trim();
-        LocalDate startDate = startDatePicker.getValue();
-        int startTimeHour = startTimeHourComboBox.getItems().get(0);
-        int startTimeMinute = startTimeMinuteComboBox.getItems().get(0);
-        MeridiemIndicator startMeridiem = startTimeMeridiemChoiceBox.getItems().get(0);
-        LocalDate endDate = endDatePicker.getValue();
-        int endTimeHour = endTimeHourComboBox.getItems().get(0);
-        int endTimeMinute = endTimeMinuteComboBox.getItems().get(0);
-        MeridiemIndicator endMeridiem = endTimeMeridiemChoiceBox.getItems().get(0);
-        int Customer_ID = customerComboBox.getItems().get(0).getId();
-        int User_ID = userComboBox.getItems().get(0).getId();
-        int Contact_ID = contactComboBox.getItems().get(0).getId();
-
-        if(startMeridiem.equals(PM) && startTimeHour<12) startTimeHour+=12;
-        else if(startMeridiem.equals(AM) && startTimeHour==12) startTimeHour-=12;
-
-        if(endMeridiem.equals(PM) && startTimeHour<12) startTimeHour+=12;
-        else if(endMeridiem.equals(AM) && startTimeHour==12) startTimeHour-=12;
-
-        LocalTime startTime = LocalTime.of(startTimeHour,startTimeMinute);
-        LocalTime endTime = LocalTime.of(endTimeHour,endTimeMinute);
-        startDateTIme = new DateTime(OffsetDateTime.of(startDate,startTime, SYSTEM_ZONE_OFFSET));
-        endDateTIme = new DateTime(OffsetDateTime.of(endDate,endTime, SYSTEM_ZONE_OFFSET));
-
-        Appointment appointment = new Appointment(Appointment_ID,Title,Description,Location,Type,startDateTIme,endDateTIme,Customer_ID,User_ID,Contact_ID);
-        appointmentList.add(appointment);
+        appointmentForm = new AppointmentForm(Appointment_ID, titleTextField, descriptionTextField, locationTextField, contactComboBox, typeTextField, startDatePicker, startTimeHourComboBox, startTimeMinuteComboBox, startTimeMeridiemChoiceBox, endDatePicker, endTimeHourComboBox, endTimeMinuteComboBox, endTimeMeridiemChoiceBox, customerComboBox, userComboBox);
+        appointmentForm.submitAddAppointment();    
     }
 
     @FXML
     void clearButtonSelectedHandler(ActionEvent event) {
-
+        appointmentForm.clearForm();
     }
 
     @FXML

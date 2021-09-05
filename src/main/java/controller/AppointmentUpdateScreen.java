@@ -12,15 +12,17 @@ import model.Appointment;
 import model.Contact;
 import model.Customer;
 import model.MeridiemIndicator;
+import model.TableItem;
 import model.User;
 
 import java.io.IOException;
 
 import static model.Inventory.*;
 
-public class AppointmentUpdateScreen {
+public class AppointmentUpdateScreen implements SendItem {
 
     Appointment appointment;
+    AppointmentForm appointmentForm;
 
     @FXML
     private AnchorPane anchorPane;
@@ -90,12 +92,12 @@ public class AppointmentUpdateScreen {
 
     @FXML
     public void initialize(){
-        AppointmentForm.initializeAppointmentForm(contactComboBox, startTimeHourComboBox, startTimeMinuteComboBox, startTimeMeridiemChoiceBox, endTimeHourComboBox, endTimeMinuteComboBox, endTimeMeridiemChoiceBox, customerComboBox, userComboBox);
+//        AppointmentForm.initializeAppointmentForm(contactComboBox, startTimeHourComboBox, startTimeMinuteComboBox, startTimeMeridiemChoiceBox, endTimeHourComboBox, endTimeMinuteComboBox, endTimeMeridiemChoiceBox, customerComboBox, userComboBox);
     }
 
     @FXML
     void clearButtonHandler(ActionEvent event) {
-
+        appointmentForm.clearForm();
     }
 
     @FXML
@@ -115,26 +117,26 @@ public class AppointmentUpdateScreen {
         screenControls.switchScreens(ScreenControls.CUSTOMER_DETAIL_SCREEN_URL);
     }
 
-    public void sendAppointment(Appointment appointment) {
-        this.appointment = appointment;
-        System.out.println(appointment);
-        this.appointmentIdTextField.setText(String.valueOf(appointment.getAppointment_ID()));
-        this.titleTextField.setText(appointment.getTitle());
-        this.descriptionTextField.setText(appointment.getDescription());
-        this.locationTextField.setText(appointment.getLocation());
-        this.postalCodeTextField.setText(appointment.getLocation());
-        this.contactComboBox.getSelectionModel().select(contactList.lookup(appointment.getContact_ID()));
-        this.typeTextField.setText(appointment.getType());
-        this.startDatePicker.setValue(appointment.getStartDate());
-        this.startTimeHourComboBox.getSelectionModel().select(appointment.getStartTimeHour());
-        this.startTimeMinuteComboBox.getSelectionModel().select(appointment.getStartTimeMinute());
-        this.startTimeMeridiemChoiceBox.getSelectionModel().select(appointment.getStartMeridiem());
-        this.endDatePicker.setValue(appointment.getEndDate());
-        this.endTimeHourComboBox.getSelectionModel().select(appointment.getEndTimeHour());
-        this.endTimeMinuteComboBox.getSelectionModel().select(appointment.getEndTimeMinute());
-        this.endTimeMeridiemChoiceBox.getSelectionModel().select(appointment.getEndMeridiem());
-        this.customerComboBox.getSelectionModel().select(customerList.lookup(appointment.getCustomer_ID()));
-        this.userComboBox.getSelectionModel().select(userList.lookup(appointment.getUser_ID()));
+    @Override
+    public <T extends TableItem> void sendItem(T appointment) {
+            this.appointment = (Appointment) appointment;
+            this.appointmentIdTextField.setText(String.valueOf(this.appointment.getAppointment_ID()));
+            this.titleTextField.setText(this.appointment.getTitle());
+            this.descriptionTextField.setText(this.appointment.getDescription());
+            this.locationTextField.setText(this.appointment.getLocation());
+            this.contactComboBox.getSelectionModel().select(contactList.lookup(this.appointment.getContact_ID()));
+            this.typeTextField.setText(this.appointment.getType());
+            this.startDatePicker.setValue(this.appointment.getStartDate());
+            this.startTimeHourComboBox.getSelectionModel().select(this.appointment.getStartHour());
+            this.startTimeMinuteComboBox.getSelectionModel().select(this.appointment.getStartMinute());
+            this.startTimeMeridiemChoiceBox.getSelectionModel().select(this.appointment.getStartMeridiem());
+            this.endDatePicker.setValue(this.appointment.getEndDate());
+            this.endTimeHourComboBox.getSelectionModel().select(this.appointment.getEndHour());
+            this.endTimeMinuteComboBox.getSelectionModel().select(this.appointment.getEndMinute());
+            this.endTimeMeridiemChoiceBox.getSelectionModel().select(this.appointment.getEndMeridiem());
+            this.customerComboBox.getSelectionModel().select(customerList.lookup(this.appointment.getCustomer_ID()));
+            this.userComboBox.getSelectionModel().select(userList.lookup(this.appointment.getUser_ID()));
+            appointmentForm = new AppointmentForm(this.appointment.getAppointment_ID(), titleTextField, descriptionTextField, locationTextField, contactComboBox, typeTextField, startDatePicker, startTimeHourComboBox, startTimeMinuteComboBox, startTimeMeridiemChoiceBox, endDatePicker, endTimeHourComboBox, endTimeMinuteComboBox, endTimeMeridiemChoiceBox, customerComboBox, userComboBox);
     }
 
 }

@@ -14,32 +14,22 @@ import static model.MeridiemIndicator.AM;
 import static model.MeridiemIndicator.PM;
 
 public class Appointment extends TableItem {
-    private int startTimeHour;
-    private Integer startTimeMinute;
-    private LocalTime startTime;
-    private MeridiemIndicator startMeridiem;
-    private LocalDate startDate;
-    private int endTimeHour;
-    private Integer endTimeMinute;
-    private LocalTime endTime;
-    private MeridiemIndicator endMeridiem;
-    private LocalDate endDate;
-    private int Appointment_ID;
+    private Integer Appointment_ID;
     private String Title;
     private String Description;
     private String Location;
     private String Type;
     private DateTime Start;
     private DateTime End;
-    private int Customer_ID;
-    private int User_ID;
-    private int Contact_ID;
+    private Integer Customer_ID;
+    private Integer User_ID;
+    private Integer Contact_ID;
 
     public Appointment(){
         super();
     }
 
-    public Appointment(int appointment_ID, String title, String description, String location, String type, DateTime start, DateTime end, int customer_ID, int user_ID, int contact_ID) {
+    public Appointment(Integer appointment_ID, String title, String description, String location, String type, DateTime start, DateTime end, Integer customer_ID, Integer user_ID, Integer contact_ID) {
         super();
         Appointment_ID = appointment_ID;
         Title = title;
@@ -51,21 +41,9 @@ public class Appointment extends TableItem {
         Customer_ID = customer_ID;
         User_ID = user_ID;
         Contact_ID = contact_ID;
-        LocalDateTime startLocalDateTime = start.getLocalDateTime();
-        LocalDateTime endLocalDateTime = end.getLocalDateTime();
-        startDate = LocalDate.from(startLocalDateTime);
-        startTime = LocalTime.from(startLocalDateTime);
-////        startTimeHour =
-//        startTimeMinute = appointmentForm.getStartTimeMinuteComboBox().getItems().get(0);
-//        startMeridiem = appointmentForm.getStartTimeMeridiemChoiceBox().getItems().get(0);
-        endDate = LocalDate.from(endLocalDateTime);
-        endTime = LocalTime.from(endLocalDateTime);
-//        endTimeHour = appointmentForm.getEndTimeHourComboBox().getItems().get(0);
-//        endTimeMinute = appointmentForm.getEndTimeMinuteComboBox().getItems().get(0);
-//        endMeridiem = appointmentForm.getEndTimeMeridiemChoiceBox().getItems().get(0);
     }
 
-    public Appointment(int appointment_ID, String title, String description, String location, String type, DateTime start, DateTime end,  DateTime create_Date, String created_By, DateTime last_Update, String last_Updated_By, int customer_ID, int user_ID, int contact_ID) {
+    public Appointment(Integer appointment_ID, String title, String description, String location, String type, DateTime start, DateTime end,  DateTime create_Date, String created_By, DateTime last_Update, String last_Updated_By, Integer customer_ID, Integer user_ID, Integer contact_ID) {
         this(appointment_ID,title,description,location,type,start,end,customer_ID,user_ID,contact_ID);
         Create_Date = create_Date;
         Created_By = created_By;
@@ -74,37 +52,32 @@ public class Appointment extends TableItem {
     }
     
     public Appointment(AppointmentForm appointmentForm) {
+        super();
         Appointment_ID = appointmentForm.getAppointment_ID();
         Title = appointmentForm.getTitleTextField().getText().trim();
         Description = appointmentForm.getDescriptionTextField().getText().trim();
         Location = appointmentForm.getLocationTextField().getText().trim();
         Type = appointmentForm.getTypeTextField().getText().trim();
-        Customer_ID = appointmentForm.getCustomerComboBox().getItems().get(0).getId();
-        User_ID = appointmentForm.getUserComboBox().getItems().get(0).getId();
-        Contact_ID = appointmentForm.getContactComboBox().getItems().get(0).getId();
-        startDate = appointmentForm.getStartDatePicker().getValue();
-        startTimeHour = appointmentForm.getStartTimeHourComboBox().getItems().get(0);
-        startTimeMinute = appointmentForm.getStartTimeMinuteComboBox().getItems().get(0);
-        startTime = LocalTime.of(startTimeHour,startTimeMinute);
-        startMeridiem = appointmentForm.getStartTimeMeridiemChoiceBox().getItems().get(0);
-        if(startMeridiem.equals(PM) && startTimeHour<12) startTimeHour+=12;
-        else if(startMeridiem.equals(AM) && startTimeHour==12) startTimeHour-=12;
-        Start = new DateTime(OffsetDateTime.of(startDate,startTime, SYSTEM_ZONE_OFFSET));
-        endDate = appointmentForm.getEndDatePicker().getValue();
-        endTimeHour = appointmentForm.getEndTimeHourComboBox().getItems().get(0);
-        endTimeMinute = appointmentForm.getEndTimeMinuteComboBox().getItems().get(0);
-        endTime = LocalTime.of(endTimeHour,endTimeMinute);
-        endMeridiem = appointmentForm.getEndTimeMeridiemChoiceBox().getItems().get(0);
-        if(endMeridiem.equals(PM) && startTimeHour<12) startTimeHour+=12;
-        else if(endMeridiem.equals(AM) && startTimeHour==12) startTimeHour-=12;
-        End = new DateTime(OffsetDateTime.of(endDate,endTime, SYSTEM_ZONE_OFFSET));
+        Customer_ID = appointmentForm.getCustomerComboBox().getSelectionModel().getSelectedItem().getCustomer_ID();
+        User_ID = appointmentForm.getUserComboBox().getSelectionModel().getSelectedItem().getUser_ID();
+        Contact_ID = appointmentForm.getContactComboBox().getSelectionModel().getSelectedItem().getContact_ID();
+        LocalDate startLocalDate = appointmentForm.getStartDatePicker().getValue();
+        Integer startTimeHour = appointmentForm.getStartTimeHourComboBox().getValue();
+        Integer startTimeMinute = appointmentForm.getStartTimeMinuteComboBox().getValue();
+        LocalTime startLocalTime = LocalTime.of(startTimeHour, startTimeMinute);
+        Start = new DateTime(OffsetDateTime.of(startLocalDate, startLocalTime, SYSTEM_ZONE_OFFSET));
+        LocalDate endLocalDate = appointmentForm.getEndDatePicker().getValue();
+        Integer endTimeHour = appointmentForm.getEndTimeHourComboBox().getValue();
+        Integer endTimeMinute = appointmentForm.getEndTimeMinuteComboBox().getValue();
+        LocalTime endLocalTime = LocalTime.of(endTimeHour, endTimeMinute);
+        End = new DateTime(OffsetDateTime.of(endLocalDate, endLocalTime, SYSTEM_ZONE_OFFSET));
    }
 
-    public int getAppointment_ID() {
+    public Integer getAppointment_ID() {
         return Appointment_ID;
     }
 
-    public void setAppointment_ID(int appointment_ID) {
+    public void setAppointment_ID(Integer appointment_ID) {
         Appointment_ID = appointment_ID;
     }
 
@@ -156,109 +129,30 @@ public class Appointment extends TableItem {
         End = end;
     }
 
-    public int getCustomer_ID() {
+    public Integer getCustomer_ID() {
         return Customer_ID;
     }
 
-    public void setCustomer_ID(int customer_ID) {
+    public void setCustomer_ID(Integer customer_ID) {
         Customer_ID = customer_ID;
     }
 
-    public int getUser_ID() {
+    public Integer getUser_ID() {
         return User_ID;
     }
 
-    public void setUser_ID(int user_ID) {
+    public void setUser_ID(Integer user_ID) {
         User_ID = user_ID;
     }
 
-    public int getContact_ID() {
+    public Integer getContact_ID() {
         return Contact_ID;
     }
 
-    public void setContact_ID(int contact_ID) {
+    public void setContact_ID(Integer contact_ID) {
         Contact_ID = contact_ID;
     }
 
-    public int getStartTimeHour() {
-        return startTimeHour;
-    }
-
-    public void setStartTimeHour(int startTimeHour) {
-        this.startTimeHour = startTimeHour;
-    }
-
-    public Integer getStartTimeMinute() {
-        return startTimeMinute;
-    }
-
-    public void setStartTimeMinute(Integer startTimeMinute) {
-        this.startTimeMinute = startTimeMinute;
-    }
-
-    public LocalTime getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(LocalTime startTime) {
-        this.startTime = startTime;
-    }
-
-    public MeridiemIndicator getStartMeridiem() {
-        return startMeridiem;
-    }
-
-    public void setStartMeridiem(MeridiemIndicator startMeridiem) {
-        this.startMeridiem = startMeridiem;
-    }
-
-    public LocalDate getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
-    }
-
-    public int getEndTimeHour() {
-        return endTimeHour;
-    }
-
-    public void setEndTimeHour(int endTimeHour) {
-        this.endTimeHour = endTimeHour;
-    }
-
-    public Integer getEndTimeMinute() {
-        return endTimeMinute;
-    }
-
-    public void setEndTimeMinute(Integer endTimeMinute) {
-        this.endTimeMinute = endTimeMinute;
-    }
-
-    public LocalTime getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(LocalTime endTime) {
-        this.endTime = endTime;
-    }
-
-    public MeridiemIndicator getEndMeridiem() {
-        return endMeridiem;
-    }
-
-    public void setEndMeridiem(MeridiemIndicator endMeridiem) {
-        this.endMeridiem = endMeridiem;
-    }
-
-    public LocalDate getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
-    }
 
     @Override
     public int getId() {
@@ -279,16 +173,6 @@ public class Appointment extends TableItem {
     @Override
     public String toString() {
         return new StringJoiner("\n", Appointment.class.getSimpleName() + ": \n", "")
-                .add("startTimeHour: " + startTimeHour)
-                .add("startTimeMinute: " + startTimeMinute)
-                .add("startTime: " + startTime)
-                .add("startMeridiem: " + startMeridiem)
-                .add("startDate: " + startDate)
-                .add("endTimeHour: " + endTimeHour)
-                .add("endTimeMinute: " + endTimeMinute)
-                .add("endTime: " + endTime)
-                .add("endMeridiem: " + endMeridiem)
-                .add("endDate: " + endDate)
                 .add("Appointment_ID: " + Appointment_ID)
                 .add("Title: '" + Title + "'")
                 .add("Description: '" + Description + "'")
@@ -305,5 +189,46 @@ public class Appointment extends TableItem {
                 .add("Last_Update: " + Last_Update)
                 .add("Last_Updated_By: '" + Last_Updated_By + "'")
                 .toString();
+    }
+
+    public LocalDate getStartDate() {
+        return Start.getLocalDate();
+    }
+
+    public LocalTime getStartTime() {
+        return Start.getLocalTime();
+    }
+
+    public Integer getStartHour() {
+        return Start.getHour();
+    }
+
+    public Integer getStartMinute() {
+        return Start.getMinute();
+    }
+
+    public MeridiemIndicator getStartMeridiem() {
+        return Start.getMeridiem();
+    }
+
+    public LocalDate getEndDate() {
+        return End.getLocalDate();
+    }
+
+    public LocalTime getEndTime() {
+        return End.getLocalTime();
+    }
+
+    public MeridiemIndicator getEndMeridiem() {
+        return End.getMeridiem();
+    }
+
+
+    public Integer getEndHour() {
+        return End.getHour();
+    }
+
+    public Integer getEndMinute() {
+        return End.getMinute();
     }
 }

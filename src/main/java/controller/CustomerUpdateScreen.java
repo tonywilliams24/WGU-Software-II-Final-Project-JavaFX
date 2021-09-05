@@ -9,6 +9,7 @@ import javafx.scene.layout.AnchorPane;
 import model.Country;
 import model.Customer;
 import model.First_Level_Division;
+import model.TableItem;
 
 import java.io.IOException;
 
@@ -16,7 +17,7 @@ import static controller.inputControls.setCountryComboBox;
 import static controller.inputControls.setFirstLevelDivisionComboBox;
 import static model.Inventory.*;
 
-public class CustomerUpdateScreen {
+public class CustomerUpdateScreen implements SendItem {
     
     CustomerForm customerForm;
     Customer customer;
@@ -78,18 +79,19 @@ public class CustomerUpdateScreen {
         screenControls.switchScreens(ScreenControls.CUSTOMER_DETAIL_SCREEN_URL);
     }
 
-    public void sendCustomer(Customer customer) {
-        this.customer = customer;
-        this.idTextField.setText(customer.getIdString());
-        this.nameTextField.setText(customer.getCustomer_Name());
-        this.addressTextField.setText(customer.getAddress());
-        this.postalCodeTextField.setText(customer.getPostal_Code());
-        this.phoneNumberTextField.setText(customer.getPhone());
-        this.firstLevelDivisionComboBox.getSelectionModel().select(first_level_divisionList.lookup(customer.getDivision_ID()));
-        this.countryComboBox.getSelectionModel().select(countryList.lookup(customer.getCountry()));
+    @Override
+    public <T extends TableItem> void sendItem(T customer) {
+        this.customer = (Customer) customer;
+        this.idTextField.setText(this.customer.getIdString());
+        this.nameTextField.setText(this.customer.getCustomer_Name());
+        this.addressTextField.setText(this.customer.getAddress());
+        this.postalCodeTextField.setText(this.customer.getPostal_Code());
+        this.phoneNumberTextField.setText(this.customer.getPhone());
+        this.firstLevelDivisionComboBox.getSelectionModel().select(first_level_divisionList.lookup(this.customer.getDivision_ID()));
+        this.countryComboBox.getSelectionModel().select(countryList.lookup(this.customer.getCountry()));
         setFirstLevelDivisionComboBox(firstLevelDivisionComboBox);
         setCountryComboBox(countryComboBox);
-        customerForm = new CustomerForm(customer.getCustomer_ID(),nameTextField,addressTextField,postalCodeTextField,phoneNumberTextField,firstLevelDivisionComboBox,countryComboBox);
+        customerForm = new CustomerForm(this.customer.getCustomer_ID(),nameTextField,addressTextField,postalCodeTextField,phoneNumberTextField,firstLevelDivisionComboBox,countryComboBox);
     }
 
 }

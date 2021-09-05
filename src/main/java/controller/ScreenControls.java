@@ -49,18 +49,26 @@ public class ScreenControls {
         assert tableItem != null;
         System.out.println(tableItem.getClass());
         if(tableItem instanceof Appointment) {
-            destinationFxmlUrlString = UPDATE_APPOINTMENT_SCREEN_URL;
+            this.destinationFxmlUrlString = UPDATE_APPOINTMENT_SCREEN_URL;
             loadDestinationScreenFXML();
             AppointmentUpdateScreen appointmentUpdateScreen = destinationFxmlLoader.getController();
-            appointmentUpdateScreen.sendAppointment((Appointment) tableItem);
+            appointmentUpdateScreen.sendItem((Appointment) tableItem);
         }
         else if (tableItem instanceof Customer) {
-            destinationFxmlUrlString = UPDATE_CUSTOMER_SCREEN_URL;
+            this.destinationFxmlUrlString = UPDATE_CUSTOMER_SCREEN_URL;
             loadDestinationScreenFXML();
             CustomerUpdateScreen customerUpdateScreen = destinationFxmlLoader.getController();
-            customerUpdateScreen.sendCustomer((Customer) tableItem);
+            customerUpdateScreen.sendItem((Customer) tableItem);
         }
         else throw new InvalidObjectException("Invalid Table Item Type");
+    }
+
+    private void sendtableItem(String destinationFxmlUrlString) throws IOException {
+        assert tableItem != null;
+            this.destinationFxmlUrlString = destinationFxmlUrlString;
+            loadDestinationScreenFXML();
+            SendItem controller = destinationFxmlLoader.getController();
+            controller.sendItem(tableItem);
     }
 
     private void sendtableItem(TableItem tableItem) throws IOException {

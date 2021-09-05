@@ -6,6 +6,8 @@ import model.Country;
 import model.Customer;
 import model.First_Level_Division;
 
+import static controller.inputControls.setCountryComboBox;
+import static controller.inputControls.setFirstLevelDivisionComboBox;
 import static model.Inventory.customerList;
 
 public class CustomerForm {
@@ -26,7 +28,6 @@ public class CustomerForm {
         this.phoneNumberTextField = phoneNumberTextField;
         this.firstLevelDivisionComboBox = firstLevelDivisionComboBox;
         this.countryComboBox = countryComboBox;
-        customer = new Customer(this);
     }
 
     public int getCustomer_ID() {
@@ -59,6 +60,11 @@ public class CustomerForm {
 
     public ComboBox<Country> getCountryComboBox() {
         return countryComboBox;
+    }
+
+    public void initializeCustomerScreen() {
+        setFirstLevelDivisionComboBox(firstLevelDivisionComboBox);
+        setCountryComboBox(countryComboBox);
     }
 
     public void submitAddCustomer() {

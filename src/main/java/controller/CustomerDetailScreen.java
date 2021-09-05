@@ -13,14 +13,19 @@ import model.Appointment;
 import model.Country;
 import model.Customer;
 import model.TableItem;
+import model.TableList;
 
 import java.io.IOException;
 import java.util.concurrent.CyclicBarrier;
 
-import static model.Inventory.appointmentList;
-import static model.Inventory.customerList;
+import static controller.inputControls.setCountryComboBox;
+import static controller.inputControls.setFirstLevelDivisionComboBox;
+import static model.Inventory.*;
+import static model.Inventory.countryList;
 
 public class CustomerDetailScreen {
+
+    Customer customer;
 
     @FXML
     private AnchorPane anchorPane;
@@ -99,10 +104,11 @@ public class CustomerDetailScreen {
 
     @FXML
     private Button homeScreenButton;
-    
+    private final TableList<Appointment> filteredAppointmentTable = new TableList<>();
+
     @FXML
     public void initialize(){
-        appointmentTable.setItems(appointmentList.getList());
+        appointmentTable.setItems(filteredAppointmentTable.getList());
         appointmentTitleColumn.setCellValueFactory(new PropertyValueFactory<>("Title"));
         appointmentDescriptionColumn.setCellValueFactory(new PropertyValueFactory<>("Description"));
         appointmentLocationColumn.setCellValueFactory(new PropertyValueFactory<>("Location"));
@@ -117,6 +123,13 @@ public class CustomerDetailScreen {
         customerPhoneNumberColumn.setCellValueFactory(new PropertyValueFactory<>("Phone"));
         customerFirstLevelDivisionColumn.setCellValueFactory(new PropertyValueFactory<>("Division_ID"));
         customerCountryColumn.setCellValueFactory(new PropertyValueFactory<>("Country"));
+    }
+
+    public void sendCustomer(Customer customer) {
+        this.customer = customer;
+        appointmentList.getList().forEach(appointment -> {
+            if(appointment.getCustomer_ID() == customer.getCustomer_ID()) filteredAppointmentTable.add(appointment);
+        });
     }
 
 

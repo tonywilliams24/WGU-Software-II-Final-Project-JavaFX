@@ -75,7 +75,8 @@ public class UserHomeScreen {
 
     @FXML
     private void customerDetailScreenButtonHandler(ActionEvent customerDetailScreenButtonSelected) throws IOException {
-        ScreenControls screenControls = new ScreenControls(customerDetailScreenButtonSelected);
+        Customer selectedCustomer = customerTable.getSelectionModel().getSelectedItem();
+        ScreenControls screenControls = new ScreenControls(customerDetailScreenButtonSelected, selectedCustomer);
         screenControls.switchScreens(ScreenControls.CUSTOMER_DETAIL_SCREEN_URL);
     }
 

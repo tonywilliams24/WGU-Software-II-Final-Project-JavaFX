@@ -61,10 +61,9 @@ public class AppointmentForm {
         this.endTimeMeridiemChoiceBox = endTimeMeridiemChoiceBox;
         this.customerComboBox = customerComboBox;
         this.userComboBox = userComboBox;
-        appointment = new Appointment(this);
     }
 
-    public static void initializeAppointmentForm(ComboBox<Contact> contactComboBox, ComboBox<Integer> startTimeHourComboBox, ComboBox<Integer> startTimeMinuteComboBox, ChoiceBox<MeridiemIndicator> startTimeMeridiemChoiceBox, ComboBox<Integer> endTimeHourComboBox, ComboBox<Integer> endTimeMinuteComboBox, ChoiceBox<MeridiemIndicator> endTimeMeridiemChoiceBox, ComboBox<Customer> customerComboBox, ComboBox<User> userComboBox) {
+    public void initializeAppointmentForm(ComboBox<Contact> contactComboBox, ComboBox<Integer> startTimeHourComboBox, ComboBox<Integer> startTimeMinuteComboBox, ChoiceBox<MeridiemIndicator> startTimeMeridiemChoiceBox, ComboBox<Integer> endTimeHourComboBox, ComboBox<Integer> endTimeMinuteComboBox, ChoiceBox<MeridiemIndicator> endTimeMeridiemChoiceBox, ComboBox<Customer> customerComboBox, ComboBox<User> userComboBox) {
         setContactComboBox(contactComboBox);
         setHourComboBox(startTimeHourComboBox);
         setMinuteComboBox(startTimeMinuteComboBox);
@@ -74,6 +73,10 @@ public class AppointmentForm {
         setMeridiemChoiceBox(endTimeMeridiemChoiceBox);
         setCustomerComboBox(customerComboBox);
         setUserComboBox(userComboBox);
+    }
+
+    public void initializeAppointmentForm() {
+        initializeAppointmentForm(contactComboBox,startTimeHourComboBox,startTimeMinuteComboBox,startTimeMeridiemChoiceBox, endTimeHourComboBox, endTimeMinuteComboBox, endTimeMeridiemChoiceBox, customerComboBox, userComboBox);
     }
 
     public TextField getTitleTextField() {
