@@ -6,14 +6,17 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import model.Appointment;
+import model.Customer;
 import model.TableItem;
 
 import java.io.IOException;
 
 import static controller.ScreenControls.*;
 import static model.Inventory.appointmentList;
+import static model.Inventory.customerList;
 
-public class AppointmentDetailScreen {
+public class AppointmentDetailScreen implements SendItem {
+    Appointment appointment;
 
     @FXML
     private AnchorPane anchorPane;
@@ -79,12 +82,7 @@ public class AppointmentDetailScreen {
     public void initialize() {
         appointmentTable.setItems(appointmentList.getList());
         appointmentIDcolumn.setCellValueFactory(new PropertyValueFactory<>("Appointment_ID"));
-        appointmentTitleColumn.setCellValueFactory(new PropertyValueFactory<>("Title"));
-        appointmentDescriptionColumn.setCellValueFactory(new PropertyValueFactory<>("Description"));
-        appointmentLocationColumn.setCellValueFactory(new PropertyValueFactory<>("Location"));
-        appointmentTypeColumn.setCellValueFactory(new PropertyValueFactory<>("Type"));
-        appointmentStartDateTimeColumn.setCellValueFactory(new PropertyValueFactory<>("Start"));
-        appointmentEndDateTimeColumn.setCellValueFactory(new PropertyValueFactory<>("End"));
+        AppointmentTable.initializeAppointmentSummaryTable(appointmentTitleColumn, appointmentDescriptionColumn, appointmentLocationColumn, appointmentTypeColumn, appointmentStartDateTimeColumn, appointmentEndDateTimeColumn);
         appointmentCustomerId.setCellValueFactory(new PropertyValueFactory<>("Customer_ID"));
         appointmentContactColumn.setCellValueFactory(new PropertyValueFactory<>("Contact_ID"));
     }
@@ -131,6 +129,12 @@ public class AppointmentDetailScreen {
     void homeScreenButtonSelectedHandler(ActionEvent homeScreenButtonSelected) throws IOException {
         ScreenControls screenControls = new ScreenControls(homeScreenButtonSelected);
         screenControls.switchScreens(HOME_SCREEN_URL);
+    }
+
+    @Override
+    public <T extends TableItem> void sendItem(T tableItem) {
+        this.appointment = (Appointment) tableItem;
+        TableControls.selectTableItem(appointmentList, appointment, appointmentTable);
     }
 
 }

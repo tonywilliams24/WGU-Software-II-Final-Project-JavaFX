@@ -63,32 +63,38 @@ public class Main extends Application {
 
     private static void addTestAppointment() {
 
-        Appointment appointment = new Appointment(1,"Test Title","Test Description","Test Location","Test Type", new DateTime(OffsetDateTime.parse("2021-08-07T00:00:00-07:00")), new DateTime(OffsetDateTime.parse("2021-08-07T00:00:00-07:00")), createDate, createdBy,lastUpdate,lastUpdatedBy,1,1,1);
-        appointmentList.add(appointment);
+        Appointment appointment1 = new Appointment(1,"Test Title 1","Test Description 1","Test Location 1","Test Type 1", new DateTime(OffsetDateTime.parse("2011-08-07T00:00:00-07:00")), new DateTime(OffsetDateTime.parse("2011-08-07T00:00:00-07:00")), createDate, createdBy,lastUpdate,lastUpdatedBy,1,1,1);
+        Appointment appointment2 = new Appointment(2,"Test Title 2","Test Description 2","Test Location 2","Test Type 2", new DateTime(OffsetDateTime.parse("2022-08-07T00:00:00-07:00")), new DateTime(OffsetDateTime.parse("2022-08-07T00:00:00-07:00")), createDate, createdBy,lastUpdate,lastUpdatedBy,2,2,2);
+        appointmentList.addAll(appointment1, appointment2);
     }
 
     private static void addTestContact() {
-        Contact contact = new Contact(1,"Test","test@test.com");
-        contactList.add(contact);
+        Contact contact1 = new Contact(1,"Test 1","test1@test.com");
+        Contact contact2 = new Contact(2,"Test 2","test2@test.com");
+        contactList.addAll(contact1, contact2);
     }
 
     private static void addTestCountry() {
-        Country country = new Country(1,"Test Country",createDate,createdBy,lastUpdate,lastUpdatedBy);
-        countryList.add(country);
+        Country country1 = new Country(1,"Test Country 1",createDate,createdBy,lastUpdate,lastUpdatedBy);
+        Country country2 = new Country(2,"Test Country 2",createDate,createdBy,lastUpdate,lastUpdatedBy);
+        countryList.addAll(country1, country2);
     }
 
     private static void addTestCustomer() {
-        Customer customer = new Customer(1,"Test Customer","Test Address","Test Postal Code","555-555-5555",createDate,createdBy,lastUpdate, lastUpdatedBy,1,"Test Country");
-        customerList.add(customer);
+        Customer customer1 = new Customer(1,"Test Customer 1","Test Address 1","Test Postal Code 1","111-111-1111",createDate,createdBy,lastUpdate, lastUpdatedBy,1,"Test Country 1");
+        Customer customer2 = new Customer(2,"Test Customer 2","Test Address 2","Test Postal Code 2","222-222-2222",createDate,createdBy,lastUpdate, lastUpdatedBy,2,"Test Country 2");
+        customerList.addAll(customer1, customer2);
     }
 
     private static void addTestFirstLevelDivision() {
-        First_Level_Division firstLevelDivision = new First_Level_Division(1,"Test Division",createDate,createdBy,lastUpdate,lastUpdatedBy,1);
-        first_level_divisionList.add(firstLevelDivision);
+        First_Level_Division firstLevelDivision1 = new First_Level_Division(1,"Test Division 1",createDate,createdBy,lastUpdate,lastUpdatedBy,1);
+        First_Level_Division firstLevelDivision2 = new First_Level_Division(2,"Test Division 2",createDate,createdBy,lastUpdate,lastUpdatedBy,2);
+        first_level_divisionList.addAll(firstLevelDivision1, firstLevelDivision2);
     }
 
     private static void addTestUser() {
-        User user = new User(1,"Test User","testpassword",createDate,"admin",lastUpdate,"admin");
-        userList.add(user);
+        User user1 = new User(1,"Test User 1","testpassword1",createDate,"admin",lastUpdate,"admin");
+        User user2 = new User(2,"Test User 2","testpassword2",createDate,"admin",lastUpdate,"admin");
+        userList.addAll(user1, user2);
     }
 }

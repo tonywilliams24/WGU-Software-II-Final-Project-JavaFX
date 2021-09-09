@@ -27,14 +27,10 @@ public class ScreenControls {
 
     private String destinationFxmlUrlString;
     private FXMLLoader destinationFxmlLoader;
-    private final ActionEvent switchScreensEvent;
+    private ActionEvent switchScreensEvent;
     private Stage currentStage;
     private Scene destinationScene;
     private TableItem tableItem = null;
-
-    public void setDestinationFxmlUrlString(String destinationFxmlUrlString) {
-        this.destinationFxmlUrlString = destinationFxmlUrlString;
-    }
 
     public ScreenControls(ActionEvent switchScreensEvent) {
         this.switchScreensEvent = switchScreensEvent;
@@ -43,37 +39,6 @@ public class ScreenControls {
     public ScreenControls(ActionEvent switchScreensEvent, TableItem tableItem) {
         this.switchScreensEvent = switchScreensEvent;
         this.tableItem = tableItem;
-    }
-
-    private void sendtableItem() throws IOException {
-        assert tableItem != null;
-        System.out.println(tableItem.getClass());
-        if(tableItem instanceof Appointment) {
-            this.destinationFxmlUrlString = UPDATE_APPOINTMENT_SCREEN_URL;
-            loadDestinationScreenFXML();
-            AppointmentUpdateScreen appointmentUpdateScreen = destinationFxmlLoader.getController();
-            appointmentUpdateScreen.sendItem((Appointment) tableItem);
-        }
-        else if (tableItem instanceof Customer) {
-            this.destinationFxmlUrlString = UPDATE_CUSTOMER_SCREEN_URL;
-            loadDestinationScreenFXML();
-            CustomerUpdateScreen customerUpdateScreen = destinationFxmlLoader.getController();
-            customerUpdateScreen.sendItem((Customer) tableItem);
-        }
-        else throw new InvalidObjectException("Invalid Table Item Type");
-    }
-
-    private void sendtableItem(String destinationFxmlUrlString) throws IOException {
-        assert tableItem != null;
-            this.destinationFxmlUrlString = destinationFxmlUrlString;
-            loadDestinationScreenFXML();
-            SendItem controller = destinationFxmlLoader.getController();
-            controller.sendItem(tableItem);
-    }
-
-    private void sendtableItem(TableItem tableItem) throws IOException {
-        this.tableItem = tableItem;
-        sendtableItem();;
     }
 
     public ScreenControls(ActionEvent switchScreensEvent, String destinationFxmlUrlString) {
@@ -87,12 +52,8 @@ public class ScreenControls {
         switchScreens();
     }
 
-    public void switchScreens() throws IOException {
-        currentStage = getCurrentStage();
-        System.out.println(tableItem);
-        if(tableItem!=null) sendtableItem();
-        destinationScene = setDestinationScene();
-        applySceneToStage();
+    private void setDestinationFxmlUrlString(String destinationFxmlUrlString) {
+        this.destinationFxmlUrlString = destinationFxmlUrlString;
     }
 
     private void loadDestinationScreenFXML() throws IOException {
@@ -101,11 +62,44 @@ public class ScreenControls {
         destinationFxmlLoader.load();
     }
 
+    private void switchScreens() throws IOException {
+        currentStage = getCurrentStage();
+        System.out.println(tableItem);
+        if(tableItem!=null) sendtableItem();
+        destinationScene = setDestinationScene();
+        applySceneToStage();
+    }
+
     private Stage getCurrentStage() { ///// refactor current stage and destination scene to be void instead of returning.
         Button selectedButton = ((Button) switchScreensEvent.getSource());
         Scene currentScene = selectedButton.getScene();
         return (Stage) currentScene.getWindow();
     }
+
+    private void sendtableItem() throws IOException {
+        loadDestinationScreenFXML();
+        SendItem controller = destinationFxmlLoader.getController();
+        controller.sendItem(tableItem);
+    }
+
+//    private void sendtableItem() throws IOException {
+//        assert tableItem != null;
+//        System.out.println(tableItem.getClass());
+//        if(tableItem instanceof Appointment) {
+//            this.destinationFxmlUrlString = UPDATE_APPOINTMENT_SCREEN_URL;
+//            loadDestinationScreenFXML();
+//            AppointmentUpdateScreen appointmentUpdateScreen = destinationFxmlLoader.getController();
+//            appointmentUpdateScreen.sendItem((Appointment) tableItem);
+//        }
+//        else if (tableItem instanceof Customer) {
+//            this.destinationFxmlUrlString = UPDATE_CUSTOMER_SCREEN_URL;
+//            loadDestinationScreenFXML();
+//            CustomerUpdateScreen customerUpdateScreen = destinationFxmlLoader.getController();
+//            customerUpdateScreen.sendItem((Customer) tableItem);
+//        }
+//        else throw new InvalidObjectException("Invalid Table Item Type");
+
+//    }
 
     private Scene setDestinationScene() {
         Parent parentScene = destinationFxmlLoader.getRoot();
@@ -117,5 +111,10 @@ public class ScreenControls {
     private void applySceneToStage() {
         currentStage.setScene(destinationScene);
         currentStage.show();
+    }
+
+    private void sendtableItem(TableItem tableItem) throws IOException {
+        this.tableItem = tableItem;
+        sendtableItem();;
     }
 }

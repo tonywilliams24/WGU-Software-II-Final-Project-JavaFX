@@ -69,7 +69,8 @@ public class UserHomeScreen {
 
     @FXML
     private void appointmentDetailScreenButtonHandler(ActionEvent appointmentDetailScreenButtonSelected) throws IOException {
-        ScreenControls screenControls = new ScreenControls(appointmentDetailScreenButtonSelected);
+        Appointment selectedAppointment = appointmentTable.getSelectionModel().getSelectedItem();
+        ScreenControls screenControls = new ScreenControls(appointmentDetailScreenButtonSelected, selectedAppointment);
         screenControls.switchScreens(ScreenControls.APPOINTMENT_DETAIL_SCREEN_URL);
     }
 

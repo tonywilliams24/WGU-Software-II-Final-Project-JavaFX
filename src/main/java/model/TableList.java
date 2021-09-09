@@ -18,7 +18,7 @@ public class TableList<T extends TableItem> {
         cumulativeLength++;
     }
 
-    public void addAll(T[] tableItems) {
+    public void addAll(T... tableItems) {
         for(T tableItem: tableItems) {
             add(tableItem);
         }

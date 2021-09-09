@@ -2,7 +2,6 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -10,20 +9,15 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import model.Appointment;
-import model.Country;
 import model.Customer;
 import model.TableItem;
 import model.TableList;
 
 import java.io.IOException;
-import java.util.concurrent.CyclicBarrier;
 
-import static controller.inputControls.setCountryComboBox;
-import static controller.inputControls.setFirstLevelDivisionComboBox;
 import static model.Inventory.*;
-import static model.Inventory.countryList;
 
-public class CustomerDetailScreen {
+public class CustomerDetailScreen implements SendItem {
 
     Customer customer;
 
@@ -104,17 +98,16 @@ public class CustomerDetailScreen {
 
     @FXML
     private Button homeScreenButton;
+
     private final TableList<Appointment> filteredAppointmentTable = new TableList<>();
+    
+    private final TableList<Customer> filteredCustomerTable = new TableList<>();
 
     @FXML
     public void initialize(){
-        appointmentTable.setItems(filteredAppointmentTable.getList());
-        appointmentTitleColumn.setCellValueFactory(new PropertyValueFactory<>("Title"));
-        appointmentDescriptionColumn.setCellValueFactory(new PropertyValueFactory<>("Description"));
-        appointmentLocationColumn.setCellValueFactory(new PropertyValueFactory<>("Location"));
-        appointmentTypeColumn.setCellValueFactory(new PropertyValueFactory<>("Type"));
-        appointmentStartDateTimeColumn.setCellValueFactory(new PropertyValueFactory<>("Start"));
-        appointmentEndDateTimeColumn.setCellValueFactory(new PropertyValueFactory<>("End"));
+
+        appointmentTable.setItems(appointmentList.getList());
+        AppointmentTable.initializeAppointmentSummaryTable(appointmentTitleColumn, appointmentDescriptionColumn, appointmentLocationColumn, appointmentTypeColumn, appointmentStartDateTimeColumn, appointmentEndDateTimeColumn);
         customerTable.setItems(customerList.getList());
         customerIdColumn.setCellValueFactory(new PropertyValueFactory<>("Customer_ID"));
         customerNameColumn.setCellValueFactory(new PropertyValueFactory<>("Customer_Name"));
@@ -123,13 +116,6 @@ public class CustomerDetailScreen {
         customerPhoneNumberColumn.setCellValueFactory(new PropertyValueFactory<>("Phone"));
         customerFirstLevelDivisionColumn.setCellValueFactory(new PropertyValueFactory<>("Division_ID"));
         customerCountryColumn.setCellValueFactory(new PropertyValueFactory<>("Country"));
-    }
-
-    public void sendCustomer(Customer customer) {
-        this.customer = customer;
-        appointmentList.getList().forEach(appointment -> {
-            if(appointment.getCustomer_ID() == customer.getCustomer_ID()) filteredAppointmentTable.add(appointment);
-        });
     }
 
 
@@ -186,5 +172,19 @@ public class CustomerDetailScreen {
         screenControls.switchScreens(ScreenControls.HOME_SCREEN_URL);
     }
 
+
+    @Override
+    public <T extends TableItem> void sendItem(T tableItem) {
+        this.customer = (Customer) tableItem;
+        TableControls.selectTableItem(customerList, customer, customerTable);
+        filterAppointmentTable(appointmentList, filteredAppointmentTable, customer, appointmentTable);
+    }
+
+    private void filterAppointmentTable(TableList<Appointment> mainList, TableList<Appointment> filteredList, Customer customer, TableView<Appointment> appointmentTableView) {
+        mainList.getList().forEach(appointmentListItem -> {
+            if(appointmentListItem.getCustomer_ID() == customer.getId()) filteredList.add(appointmentListItem);
+        });
+        appointmentTableView.setItems(filteredList.getList());
+    }
 
 }
